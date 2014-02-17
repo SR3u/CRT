@@ -18,5 +18,7 @@
 -(NSString*) getName;
 -(NSString*) getAddress;
 -(NSString*) valueForKey:(NSString*)key;
+- (void)encodeWithCoder:(NSCoder *)encoder;
+- (id)initWithCoder:(NSCoder *)decoder;
 
 @end

@@ -18,6 +18,10 @@
 }
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
+    if (data==nil)
+    {
+        return 0;
+    }
     return [data count];
 }
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex;
@@ -48,10 +52,41 @@
 
 -(void)saveToFile:(NSString*)FileName
 {
-    [data writeToFile:FileName atomically:YES];
+   // NSLog(@"%i",[data writeToFile:FileName atomically:NO]);
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"nokey" ascending: YES];
+    [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"servername" ascending: YES];
+    [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSData *Data = [NSKeyedArchiver archivedDataWithRootObject:data];
+    [Data writeToFile:FileName options:NSDataWritingAtomic error:nil];
 }
 -(void)loadFromFile:(NSString*)FileName
 {
-    data=[data initWithContentsOfFile:FileName];
+    data=[NSKeyedUnarchiver unarchiveObjectWithFile:FileName];
+    if (data == nil)
+    {
+        data=[NSMutableArray array];
+    }
 }
+
+-(void)replaceObjectAtIndex:(NSInteger)index  withObject:(id)Obj
+{
+    if (index<0)
+        return;
+    [data replaceObjectAtIndex:index withObject:Obj];
+}
+-(TableRow*)objectAtIndex:(NSInteger)index
+{
+    if (index<0)
+        return nil;
+    return [data objectAtIndex:index];
+}
+-(void)removeObjectAtIndex:(NSInteger)index
+{
+    if (index<0)
+        return;
+    [data removeObjectAtIndex:index];
+    [table reloadData];
+}
+
 @end

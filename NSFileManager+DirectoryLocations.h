@@ -32,5 +32,6 @@
 	appendPathComponent:(NSString *)appendComponent
 	error:(NSError **)errorOut;
 - (NSString *)applicationSupportDirectory;
+- (NSString *)docsDirectory;
 
 @end

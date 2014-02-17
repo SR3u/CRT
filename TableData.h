@@ -20,4 +20,9 @@
 -(void)clear;
 -(void)saveToFile:(NSString*)FileName;
 -(void)loadFromFile:(NSString*)FileName;
+
+-(void)removeObjectAtIndex:(NSInteger)index;
+-(TableRow*)objectAtIndex:(NSInteger)index;
+-(void)replaceObjectAtIndex:(NSInteger)index  withObject:(id)Obj;
+
 @end

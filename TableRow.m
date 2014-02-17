@@ -16,7 +16,6 @@
 -(void) setAddress:(NSString*)str
 {
     Address=[NSString stringWithString:str];
-    //[self setValue:Event forKey:@"calevent"];
 }
 -(NSString*) getName
 {
@@ -38,4 +37,22 @@
     }
     return NULL;
 }
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.getName forKey:@"servername"];
+    [encoder encodeObject:self.getAddress forKey:@"serveraddress"];
+}
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    [self setName:[decoder decodeObjectForKey:@"servername"]];
+    [self setAddress:[decoder decodeObjectForKey:@"serveraddress"]];
+    return self;
+}
+
 @end

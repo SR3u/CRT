@@ -23,8 +23,14 @@
     IBOutlet NSTableView *Table;
     IBOutlet TableData *Servers;
     
+    IBOutlet NSWindow *SettingsWindow;
+    IBOutlet NSTextField *Version;
+    
     NSFileManager* FileManager;
+    SEL oldServersDblClick;
 }
+-(void)ServersDblCick:(id)sender;
+
 - (IBAction)OpenAddWindow:(id)sender;
 - (IBAction)OpenEditWindow:(id)sender;
 
@@ -37,9 +43,13 @@
 - (IBAction)CloseAddWindow:(id)sender;
 - (IBAction)CloseEditWindow:(id)sender;
 
+- (IBAction)DeleteServer:(id)sender;
+
 - (IBAction)Quit:(id)sender;
 
-- (id)init;
--(void)Init;
+- (IBAction)OpenSettingsWindow:(id)sender;
+
+-(void)awakeFromNib;
+-(void)Update;
 +(void)OpenActionWindow:(NSWindow*)ActionWindow;
 @end

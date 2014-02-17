@@ -151,5 +151,26 @@ NSString * const DirectoryLocationDomain = @"DirectoryLocationDomain";
 	}
 	return result;
 }
+- (NSString *)docsDirectory
+{
+	NSString *executableName =@".";
+    executableName= [executableName stringByAppendingString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"]];
+
+	NSError *error;
+	NSString *result =
+    [self
+     findOrCreateDirectory:NSDocumentDirectory
+     inDomain:NSUserDomainMask
+     appendPathComponent:executableName
+     error:&error];
+	if (!result)
+	{
+		NSLog(@"Unable to find or create home directory:\n%@", error);
+	}
+	return result;
+}
+
+
+
 
 @end
