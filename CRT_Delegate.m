@@ -9,7 +9,36 @@
 #import "CRT_Delegate.h"
 #import "NSFileManager+DirectoryLocations.h"
 
+NSString* screenSharingUtilities[]=
+{
+    @"open \"/System/Library/CoreServices/Screen Sharing.app\" %@",
+    @"open \"/System/Library/CoreServices/Applications/Screen Sharing.app\" %@",
+};
+NSString *formatString=@"";
+
 @implementation CRT_Delegate
+
+
+-(void)initFormatString
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *pathForFile=@"/System/Library/CoreServices/Screen Sharing.app";
+    
+    if ([fileManager fileExistsAtPath:pathForFile])
+        formatString=screenSharingUtilities[0];
+    else
+    {
+        if ([fileManager fileExistsAtPath:@"/System/Library/CoreServices/Applications/Screen Sharing.app"])
+            formatString=screenSharingUtilities[1];
+        else
+        {
+            NSLog(@"cannot find ScreenSharing.app at default locations, please update CRT.app");
+            [[NSApplication sharedApplication] terminate:self];
+        }
+    }
+}
+
 -(NSString*)ServersFile
 {
     NSString* str=[[FileManager applicationSupportDirectory] stringByAppendingString:@"/Servers.nsarray"];
@@ -72,7 +101,7 @@
         NSString *tmp=@"vnc://";
         Addr=[tmp stringByAppendingString:Addr];
     }
-    NSString *connectionString=[NSString stringWithFormat:@"open \"/System/Library/CoreServices/Screen Sharing.app\" %@",Addr];
+    NSString *connectionString=[NSString stringWithFormat:formatString,Addr];
     system([connectionString cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 - (IBAction)DeleteServer:(id)sender
@@ -127,6 +156,7 @@
 }
 - (void)awakeFromNib
 {
+    [self initFormatString];
     FileManager=[NSFileManager defaultManager];
     [Table setDoubleAction:@selector(ServersDblCick:)];
     [self Update];
