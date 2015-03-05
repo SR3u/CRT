@@ -85,7 +85,8 @@
 - (NSRect)globalRect
 {
     NSRect frame = [self frame];
-    frame.origin = [self.window convertBaseToScreen:frame.origin];
+    frame = [self.window convertRectToScreen:frame];
+    //frame.origin = [self.window convertBaseToScreen:frame.origin];//deprecated
     return frame;
 }
 
