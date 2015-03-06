@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CRT_SettingsDelegate : NSObject
+@interface CRT_SettingsDelegate : NSObject<NSWindowDelegate>
 {
     IBOutlet NSWindow *window;
     IBOutlet NSTextView *Version;
+    NSMutableDictionary* settingsDict;
+    NSDictionary* defaultSettings;
 }
+-(NSDictionary*) getSettings;
+
+-(id) init;
+-(void)awakeFromNib;
 
 @end

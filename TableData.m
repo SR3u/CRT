@@ -14,7 +14,6 @@
 {
     [data addObject:row];
     [table reloadData];
-    //NSLog(@"%@",data);
 }
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
@@ -36,8 +35,7 @@
     {
         return [r getAddress];
     }
-    return NULL;
-    //return [r valueForKey:identifier];
+    return nil;
 }
 - (void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
 {
@@ -52,13 +50,15 @@
 
 -(void)saveToFile:(NSString*)FileName
 {
-   // NSLog(@"%i",[data writeToFile:FileName atomically:NO]);
-    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"nokey" ascending: YES];
-    [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"servername" ascending: YES];
-    [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    NSData *Data = [NSKeyedArchiver archivedDataWithRootObject:data];
-    [Data writeToFile:FileName options:NSDataWritingAtomic error:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+    ^{
+        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"nokey" ascending: YES];
+        [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"servername" ascending: YES];
+        [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        NSData *Data = [NSKeyedArchiver archivedDataWithRootObject:data];
+        [Data writeToFile:FileName options:NSDataWritingAtomic error:nil];
+    });
 }
 -(void)loadFromFile:(NSString*)FileName
 {

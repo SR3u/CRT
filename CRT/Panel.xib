@@ -374,6 +374,9 @@
                     </textField>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="delegate" destination="WZc-Kf-QCg" id="qA9-oB-p2f"/>
+            </connections>
         </window>
     </objects>
 </document>

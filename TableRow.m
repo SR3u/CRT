@@ -35,7 +35,7 @@
     {
         return [self getAddress];
     }
-    return NULL;
+    return nil;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder

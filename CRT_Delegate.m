@@ -34,7 +34,7 @@ NSString *formatString=@"";
         else
         {
             NSLog(@"cannot find ScreenSharing.app at default locations, please update CRT.app");
-            [[NSApplication sharedApplication] terminate:self];
+            [self Quit:self];
         }
     }
 }
@@ -42,7 +42,6 @@ NSString *formatString=@"";
 -(NSString*)ServersFile
 {
     NSString* str=[[FileManager applicationSupportDirectory] stringByAppendingString:@"/Servers.nsarray"];
-//    NSLog(@"iswritable %i",[FileManager isWritableFileAtPath:str]);
     if (![FileManager fileExistsAtPath:str])
     {
         [FileManager createFileAtPath:str contents:nil attributes:nil];
