@@ -55,6 +55,8 @@
 }
 -(void) saveSettingsToFile:(NSString*)fileName
 {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+    ^{
     if([settingsDict isEqual:[self loadSettingsFromFile:[self SettingsJSONFile]]])
         return;
     NSData *dat=[NSJSONSerialization dataWithJSONObject:settingsDict options:0 error:nil];
@@ -62,14 +64,11 @@
     NSError *err=nil;
     [JSONString writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
     if (err!=nil){NSLog(@"Failed to save settings!\nERROR:\n%@",err);}
+    });
 }
 -(NSDictionary*) getSettings
 {
     return settingsDict;
-}
--(void)awakeFromNib
-{
-    
 }
 -(BOOL)windowShouldClose:(id)sender
 {

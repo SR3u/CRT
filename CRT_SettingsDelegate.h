@@ -18,6 +18,5 @@
 -(NSDictionary*) getSettings;
 
 -(id) init;
--(void)awakeFromNib;
 
 @end
