@@ -340,8 +340,6 @@
         </customObject>
         <customObject id="O42-tJ-B6P" customClass="TableData">
             <connections>
-                <outlet property="AddWindow" destination="4Cl-3D-LVE" id="lQt-eN-bHO"/>
-                <outlet property="EditWindow" destination="F2k-eV-QhA" id="tGf-nO-Fiq"/>
                 <outlet property="data" destination="9iG-lq-b7T" id="nvT-4n-8xX"/>
                 <outlet property="table" destination="T9i-zZ-Wlc" id="J6R-m4-PM2"/>
             </connections>

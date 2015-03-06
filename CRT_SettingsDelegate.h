@@ -10,7 +10,8 @@
 
 @interface CRT_SettingsDelegate : NSObject
 {
-    
+    IBOutlet NSWindow *window;
+    IBOutlet NSTextView *Version;
 }
 
 @end
