@@ -26,6 +26,7 @@
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],@"version",
+                       @1,@"dblClickAction",
                        nil];
     return res;
 }
@@ -66,13 +67,27 @@
     if (err!=nil){NSLog(@"Failed to save settings!\nERROR:\n%@",err);}
     });
 }
+-(void) refreshUI
+{
+    [dblClickAction selectItemAtIndex:[[settingsDict objectForKey:@"dblClickAction"] integerValue]];
+}
+-(void) refreshSettings
+{
+    [settingsDict setObject:[NSNumber numberWithInteger:[dblClickAction indexOfSelectedItem]] forKey:@"dblClickAction"];
+}
+
 -(NSDictionary*) getSettings
 {
     return settingsDict;
 }
 -(BOOL)windowShouldClose:(id)sender
 {
+    [self refreshSettings];
     [self saveSettingsToFile:[self SettingsJSONFile]];
     return YES;
+}
+- (void)awakeFromNib
+{
+    [self refreshUI];
 }
 @end

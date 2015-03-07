@@ -12,6 +12,8 @@
 {
     IBOutlet NSWindow *window;
     IBOutlet NSTextView *Version;
+    IBOutlet NSPopUpButton *dblClickAction;
+    
     NSMutableDictionary* settingsDict;
     NSDictionary* defaultSettings;
 }
