@@ -230,7 +230,10 @@
     
     [panel performSelector:@selector(makeFirstResponder:) withObject:self.searchField afterDelay:openDuration];
 }
-
+-(IBAction)openAbout:(id)sender
+{
+    [[NSApplication sharedApplication] orderFrontStandardAboutPanel:sender];
+}
 - (void)closePanel
 {
     [NSAnimationContext beginGrouping];

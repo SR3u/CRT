@@ -24,7 +24,7 @@
     IBOutlet TableData *Servers;
     
     IBOutlet NSWindow *SettingsWindow;
-    IBOutlet NSTextField *Version;
+    IBOutlet NSTextField *Version,*Copyright;
     
     NSFileManager* FileManager;
     SEL oldServersDblClick;

@@ -148,6 +148,7 @@ NSString *formatString=@"";
 {
     [CRT_Delegate OpenActionWindow:SettingsWindow];
     [Version setStringValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    [Copyright setStringValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
 }
 -(void)Update
 {
