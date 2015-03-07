@@ -26,7 +26,7 @@
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],@"version",
-                       @1,@"dblClickAction",
+                       //@1,@"dblClickAction",
                        nil];
     return res;
 }
@@ -69,11 +69,11 @@
 }
 -(void) refreshUI
 {
-    [dblClickAction selectItemAtIndex:[[settingsDict objectForKey:@"dblClickAction"] integerValue]];
+   //[dblClickAction selectItemAtIndex:[[settingsDict objectForKey:@"dblClickAction"] integerValue]];
 }
 -(void) refreshSettings
 {
-    [settingsDict setObject:[NSNumber numberWithInteger:[dblClickAction indexOfSelectedItem]] forKey:@"dblClickAction"];
+    //[settingsDict setObject:[NSNumber numberWithInteger:[dblClickAction indexOfSelectedItem]] forKey:@"dblClickAction"];
 }
 
 -(NSDictionary*) getSettings
