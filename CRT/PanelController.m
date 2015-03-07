@@ -234,6 +234,7 @@
 {
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:sender];
 }
+
 - (void)closePanel
 {
     [NSAnimationContext beginGrouping];

@@ -30,9 +30,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
-        
-    // Set up dark mode for icon
+	// Set up dark mode for icon
     if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"]  isEqual: @"Dark"])
     {
         self.image = [NSImage imageNamed:@"StatusHighlighted"];
@@ -44,7 +42,8 @@
         else
             self.image = [NSImage imageNamed:@"Status"];
     }
-    [self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
+	[self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
+    
     NSImage *icon = self.image;
     NSSize iconSize = [icon size];
     NSRect bounds = self.bounds;
@@ -98,9 +97,6 @@
 - (NSRect)globalRect
 {
     NSRect frame = [self frame];
-    frame = [self.window convertRectToScreen:frame];
-    //frame.origin = [self.window convertBaseToScreen:frame.origin];//deprecated
-    return frame;
+    return [self.window convertRectToScreen:frame];
 }
-
 @end
