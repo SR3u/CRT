@@ -31,8 +31,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
-    
-    //NSImage *icon = self.isHighlighted ? self.alternateImage : self.image;
+        
     // Set up dark mode for icon
     if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"]  isEqual: @"Dark"])
     {
