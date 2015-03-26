@@ -12,6 +12,7 @@ You are free to use and/or modify this program, but some code is taken from othe
 
 # Downloads
 
+[Latest version](https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.24.zip)
 [See all versions available](https://bitbucket.org/SR3u/crt-vnc-client/downloads)
 
 # Used projects
