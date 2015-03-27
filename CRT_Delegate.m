@@ -168,10 +168,11 @@ NSString *formatString=@"";
 {
     [self initFormatString];
     FileManager=[NSFileManager defaultManager];
-    [Table setDoubleAction:@selector(ServersDblCick:)];
+    [Table setTarget:self];
+    [Table setDoubleAction:@selector(ServersDblClick:)];
     [self Update];
 }
--(IBAction) ServersDblCick:(id)sender
+-(IBAction) ServersDblClick:(id)sender
 {
     [self Connect:Table];
 }
