@@ -5,6 +5,7 @@ CRT is just a simple organizer for Mac OS X default utility Screen Sharing.app.
 # Screenshots
 
 ![CRT-ScreenShot-0.png](https://bitbucket.org/repo/Ke7MBn/images/1675468057-CRT-ScreenShot-0.png)
+![CRT-ScreenShot-1.png](https://bitbucket.org/repo/Ke7MBn/images/3026379409-CRT-ScreenShot-1.png)
 
 # License
 
