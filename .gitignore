@@ -24,3 +24,4 @@ bin
 
 # default project workspace
 project.xcworkspace
+CRT.xccheckout
