@@ -84,6 +84,7 @@
 {
     [self refreshSettings];
     [self saveSettingsToFile:[self SettingsJSONFile]];
+    [crtDelegate OpenPanel:sender];
     return YES;
 }
 - (void)awakeFromNib

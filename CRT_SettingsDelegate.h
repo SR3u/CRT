@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CRT_Delegate.h"
 
 @interface CRT_SettingsDelegate : NSObject<NSWindowDelegate>
 {
@@ -16,6 +17,7 @@
     
     NSMutableDictionary* settingsDict;
     NSDictionary* defaultSettings;
+    IBOutlet CRT_Delegate *crtDelegate;
 }
 -(NSDictionary*) getSettings;
 

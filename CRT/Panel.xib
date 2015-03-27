@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PanelController">
@@ -97,7 +97,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="L0g-tz-Y4e" id="T9i-zZ-Wlc">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="279.5" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,7 +116,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="serveraddress" editable="NO" width="110" minWidth="40" maxWidth="1000" id="fZl-eT-Gsq">
+                                        <tableColumn identifier="serveraddress" editable="NO" width="110.5" minWidth="40" maxWidth="1000" id="fZl-eT-Gsq">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Address">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -321,6 +321,7 @@
         <customObject id="WZc-Kf-QCg" customClass="CRT_SettingsDelegate">
             <connections>
                 <outlet property="Version" destination="DjE-1L-NoR" id="duX-mw-ibY"/>
+                <outlet property="crtDelegate" destination="eB5-5H-uW1" id="HIi-PG-ORk"/>
                 <outlet property="window" destination="M14-5h-KMX" id="JkL-gm-eHI"/>
             </connections>
         </customObject>
@@ -333,6 +334,7 @@
                 <outlet property="EditServerAddress" destination="T6C-mc-I6U" id="TgL-1t-u7g"/>
                 <outlet property="EditServerName" destination="AIT-L7-oxO" id="0oS-DS-81w"/>
                 <outlet property="EditWindow" destination="F2k-eV-QhA" id="SHD-aQ-bw8"/>
+                <outlet property="MainPanelController" destination="-2" id="2wJ-oX-cF0"/>
                 <outlet property="Servers" destination="O42-tJ-B6P" id="EMK-s0-JEv"/>
                 <outlet property="SettingsWindow" destination="M14-5h-KMX" id="qKG-Ij-qfU"/>
                 <outlet property="Table" destination="T9i-zZ-Wlc" id="7Sv-8C-Q2y"/>

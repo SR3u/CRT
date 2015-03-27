@@ -54,15 +54,20 @@ NSString *formatString=@"";
     mouseLoc = [NSEvent mouseLocation]; //get current mouse position
     CGFloat xPos = (CGFloat)mouseLoc.x-NSWidth([ActionWindow frame])/2;
     CGFloat yPos = (CGFloat)mouseLoc.y - NSHeight([ActionWindow frame]);
-    [ActionWindow setFrame:NSMakeRect(xPos, yPos, NSWidth([ActionWindow frame]), NSHeight([ActionWindow frame])) display:YES];
+    [ActionWindow setFrame:NSMakeRect(xPos, yPos, NSWidth([ActionWindow frame]),
+                                      NSHeight([ActionWindow frame])) display:YES];
     [ActionWindow orderFront:self];
     [ActionWindow orderFrontRegardless];
 }
+- (IBAction)ClosePanel:(id)sender{[MainPanelController closePanel];}
+- (IBAction)OpenPanel:(id)sender{[MainPanelController openPanel];}
+
 - (IBAction)OpenAddWindow:(id)sender;
 {
     [self CloseEditWindow:self];
     [AddServerAddress setStringValue:@"VNC://"];
     [CRT_Delegate OpenActionWindow:AddWindow];
+    [self ClosePanel:sender];
 }
 - (IBAction)OpenEditWindow:(id)sender;
 {
@@ -73,18 +78,21 @@ NSString *formatString=@"";
     [EditServerName setStringValue:[tmp getName]];
     [EditServerAddress setStringValue:[tmp getAddress]];
     [CRT_Delegate OpenActionWindow:EditWindow];
+    [self ClosePanel:sender];
 }
 - (IBAction)CloseAddWindow:(id)sender
 {
     [AddServerName setStringValue:@""];
     [AddServerAddress setStringValue:@"VNC://"];
     [AddWindow orderOut:self];
+    [self OpenPanel:sender];
 }
 - (IBAction)CloseEditWindow:(id)sender
 {
     [EditServerName setStringValue:@""];
     [EditServerAddress setStringValue:@"VNC://"];
     [EditWindow orderOut:self];
+    [self OpenPanel:sender];
 }
 - (IBAction)Quit:(id)sender
 {
@@ -149,6 +157,7 @@ NSString *formatString=@"";
     [CRT_Delegate OpenActionWindow:SettingsWindow];
     [Version setStringValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     [Copyright setStringValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
+    [self ClosePanel:sender];
 }
 -(void)Update
 {

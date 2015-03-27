@@ -7,10 +7,13 @@
 //
 
 #import "TableData.h"
+#import "PanelController.h"
 #import <Foundation/Foundation.h>
 
 @interface CRT_Delegate : NSObject
 {
+    IBOutlet PanelController *MainPanelController;
+    
     IBOutlet NSWindow *AddWindow;
     IBOutlet NSWindow *EditWindow;
 
@@ -48,6 +51,9 @@
 - (IBAction)Quit:(id)sender;
 
 - (IBAction)OpenSettingsWindow:(id)sender;
+
+- (IBAction)ClosePanel:(id)sender;
+- (IBAction)OpenPanel:(id)sender;
 
 -(void)awakeFromNib;
 -(void)Update;
