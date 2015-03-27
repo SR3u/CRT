@@ -30,7 +30,6 @@
     IBOutlet NSTextField *Version,*Copyright;
     
     NSFileManager* FileManager;
-    SEL oldServersDblClick;
 }
 -(void)ServersDblCick:(id)sender;
 

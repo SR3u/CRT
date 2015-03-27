@@ -119,6 +119,7 @@ NSString *formatString=@"";
 -(IBAction)Connect:(id)sender
 {
     TableRow* tmp=[Servers objectAtIndex:[Table selectedRow]];
+    if(tmp==nil){return;}
     [CRT_Delegate ConnectTo:[tmp getAddress]];
 }
 - (IBAction)AddServer:(id)sender
@@ -170,7 +171,7 @@ NSString *formatString=@"";
     [Table setDoubleAction:@selector(ServersDblCick:)];
     [self Update];
 }
--(void)ServersDblCick:(id)sender
+-(IBAction) ServersDblCick:(id)sender
 {
     [self Connect:Table];
 }
