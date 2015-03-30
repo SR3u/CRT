@@ -14,8 +14,7 @@ You are free to use and/or modify this program, but some code is taken from othe
 
 # Downloads
 
-[Latest version](https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.26.zip) 
-
+[Latest version](https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.26.zip)   
 [See all versions available](https://bitbucket.org/SR3u/crt-vnc-client/downloads)
 
 # Used projects
@@ -24,6 +23,5 @@ https://github.com/shpakovski/Popup Popup is licensed under the BSD license.
 
 # Other repos
 
-[Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client)
-
-[GitHub](https://github.com/SR3u/CRT)
+[Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client)  
+[GitHub](https://github.com/SR3u/CRT)  
