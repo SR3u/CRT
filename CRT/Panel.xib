@@ -17,14 +17,14 @@
             <windowStyleMask key="styleMask" utility="YES" nonactivatingPanel="YES"/>
             <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" ignoresCycle="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="162" y="101" width="300" height="300"/>
+            <rect key="contentRect" x="162" y="101" width="420" height="300"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="6" customClass="BackgroundView">
-                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                <rect key="frame" x="0.0" y="-1" width="420" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button id="t7f-dk-lLN">
-                        <rect key="frame" x="9" y="10" width="25" height="25"/>
+                        <rect key="frame" x="5" y="2" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" title="+" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFb-4H-hon">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -35,7 +35,7 @@
                         </connections>
                     </button>
                     <button id="GrP-dD-tpm">
-                        <rect key="frame" x="33" y="10" width="25" height="25"/>
+                        <rect key="frame" x="29" y="2" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" title="-" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bcU-fF-Mjf">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -46,7 +46,7 @@
                         </connections>
                     </button>
                     <button id="Vw1-Wf-9MP">
-                        <rect key="frame" x="57" y="10" width="34" height="25"/>
+                        <rect key="frame" x="53" y="2" width="34" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" title="Edit" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Krh-Jv-5Vm">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -57,7 +57,7 @@
                         </connections>
                     </button>
                     <button id="WtB-hi-qOn">
-                        <rect key="frame" x="90" y="10" width="62" height="25"/>
+                        <rect key="frame" x="86" y="2" width="62" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" title="Connect" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mKY-1z-vff">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -67,30 +67,8 @@
                             <action selector="Connect:" target="eB5-5H-uW1" id="hLY-rs-h67"/>
                         </connections>
                     </button>
-                    <button id="KmD-Z5-7nl">
-                        <rect key="frame" x="195" y="10" width="60" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Settings" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Om-RT-OM4">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="OpenSettingsWindow:" target="eB5-5H-uW1" id="mok-T2-B9q"/>
-                        </connections>
-                    </button>
-                    <button id="AJO-qu-WeP">
-                        <rect key="frame" x="254" y="10" width="37" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Quit" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MKp-0r-0in">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="Quit:" target="eB5-5H-uW1" id="uEa-y2-WPD"/>
-                        </connections>
-                    </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2X2-hg-Qci">
-                        <rect key="frame" x="9" y="35" width="282" height="253"/>
+                        <rect key="frame" x="5" y="28" width="410" height="260"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="dDg-SO-bVA">
                             <rect key="frame" x="1" y="17" width="280" height="235"/>
@@ -103,7 +81,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="servername" editable="NO" width="163.66015625" minWidth="40" maxWidth="1000" id="Ask-mj-723">
+                                        <tableColumn identifier="servername" editable="NO" width="120" minWidth="40" maxWidth="1000" id="Ask-mj-723">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -116,7 +94,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="serveraddress" editable="NO" width="110.5" minWidth="40" maxWidth="1000" id="fZl-eT-Gsq">
+                                        <tableColumn identifier="serveraddress" editable="NO" width="282" minWidth="40" maxWidth="1000" id="fZl-eT-Gsq">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Address">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -150,11 +128,34 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
+                    <button id="KmD-Z5-7nl">
+                        <rect key="frame" x="319" y="2" width="60" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" title="Settings" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Om-RT-OM4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="OpenSettingsWindow:" target="eB5-5H-uW1" id="mok-T2-B9q"/>
+                        </connections>
+                    </button>
+                    <button id="AJO-qu-WeP">
+                        <rect key="frame" x="378" y="2" width="37" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" title="Quit" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MKp-0r-0in">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Quit:" target="eB5-5H-uW1" id="uEa-y2-WPD"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="8"/>
             </connections>
+            <point key="canvasLocation" x="550" y="294"/>
         </window>
         <window title="Add VNC Server" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="4Cl-3D-LVE">
             <windowStyleMask key="styleMask" titled="YES"/>
