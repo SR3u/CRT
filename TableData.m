@@ -76,7 +76,7 @@
     NSError* err=nil;
     NSString* JSONString=[NSString stringWithContentsOfFile:FileName
                                                    encoding:NSUTF8StringEncoding error:&err];
-    if(err!=nil){NSLog(@"Failed to load settings!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
+    if(err!=nil){NSLog(@"Failed to load servers list!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
     if([JSONString isEqual:@""]){data=[NSMutableArray new];return;}
     NSData *jsonData=[JSONString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict=[[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil] mutableCopy];
