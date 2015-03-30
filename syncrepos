@@ -1,0 +1,8 @@
+#!/bin/bash
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd "$DIR"
+git fetch --all
+git pull bitbucket master
+git pull github master
+git push bitbucket master
+git push github master
