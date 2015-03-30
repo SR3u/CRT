@@ -4,8 +4,8 @@ CRT is just a simple organizer for Mac OS X default utility Screen Sharing.app.
 
 # Screenshots
 
-![CRT-ScreenShot-1.png](https://bitbucket.org/repo/Ke7MBn/images/856881415-CRT-ScreenShot-1.png)
-![CRT-ScreenShot-2.png](https://bitbucket.org/repo/Ke7MBn/images/3041520528-CRT-ScreenShot-2.png)
+![CRT-ScreenShot-1.png](https://bitbucket.org/repo/Ke7MBn/images/856881415-CRT-ScreenShot-1.png)  
+![CRT-ScreenShot-2.png](https://bitbucket.org/repo/Ke7MBn/images/3041520528-CRT-ScreenShot-2.png)  
 ![CRT-ScreenShot-3.png](https://bitbucket.org/repo/Ke7MBn/images/4198003356-CRT-ScreenShot-3.png)
 
 # License
@@ -24,4 +24,4 @@ https://github.com/shpakovski/Popup Popup is licensed under the BSD license.
 # Other repos
 
 [Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client)  
-[GitHub](https://github.com/SR3u/CRT)  
+[GitHub](https://github.com/SR3u/CRT)
