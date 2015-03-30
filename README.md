@@ -21,3 +21,9 @@ You are free to use and/or modify this program, but some code is taken from othe
 # Used projects
 
 https://github.com/shpakovski/Popup Popup is licensed under the BSD license.
+
+# Other repos
+
+[Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client)
+
+[GitHub](https://github.com/SR3u/CRT)
