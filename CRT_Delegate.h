@@ -31,7 +31,6 @@
     
     NSFileManager* FileManager;
 }
--(void)ServersDblCick:(id)sender;
 
 - (IBAction)OpenAddWindow:(id)sender;
 - (IBAction)OpenEditWindow:(id)sender;

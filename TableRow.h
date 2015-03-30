@@ -6,19 +6,6 @@
 //  Copyright (c) 2014 SR3u. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSMutableDictionary+TableRowExt.h"
 
-@interface TableRow : NSObject
-{
-    NSString *Name;
-    NSString *Address;
-}
--(void) setName:(NSString*)str;
--(void) setAddress:(NSString*)str;
--(NSString*) getName;
--(NSString*) getAddress;
--(NSString*) valueForKey:(NSString*)key;
-- (void)encodeWithCoder:(NSCoder *)encoder;
-- (id)initWithCoder:(NSCoder *)decoder;
-
-@end
+typedef NSMutableDictionary TableRow;

@@ -41,7 +41,7 @@ NSString *formatString=@"";
 
 -(NSString*)ServersFile
 {
-    NSString* str=[[FileManager applicationSupportDirectory] stringByAppendingString:@"/Servers.nsarray"];
+    NSString* str=[[FileManager applicationSupportDirectory] stringByAppendingString:@"/Servers.json"];
     if (![FileManager fileExistsAtPath:str])
     {
         [FileManager createFileAtPath:str contents:nil attributes:nil];
@@ -124,7 +124,7 @@ NSString *formatString=@"";
 }
 - (IBAction)AddServer:(id)sender
 {
-    TableRow *tmp=[TableRow alloc];
+    TableRow *tmp=[TableRow new];
     [tmp setName:[AddServerName stringValue]];
     [tmp setAddress:[AddServerAddress stringValue]];
     [Servers add:tmp];
@@ -133,7 +133,7 @@ NSString *formatString=@"";
 }
 - (IBAction)SaveServer:(id)sender
 {
-    TableRow* tmp=[TableRow alloc];
+    TableRow* tmp=[TableRow new];
     tmp=[tmp init];
     [tmp setName:[EditServerName stringValue]];
     [tmp setAddress:[EditServerAddress stringValue]];

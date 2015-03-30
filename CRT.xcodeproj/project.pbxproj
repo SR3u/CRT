@@ -27,8 +27,8 @@
 		4EBD2FE518B1485E0093A21F /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FDE18B1485E0093A21F /* NSFileManager+DirectoryLocations.m */; };
 		4EBD2FE618B1485E0093A21F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FDF18B1485E0093A21F /* README.md */; };
 		4EBD2FE718B1485E0093A21F /* TableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FE118B1485E0093A21F /* TableData.m */; };
-		4EBD2FE818B1485E0093A21F /* TableRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FE318B1485E0093A21F /* TableRow.m */; };
 		4EBD2FEE18B149DB0093A21F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FED18B149DB0093A21F /* MainMenu.xib */; };
+		4ECBADBC1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,13 +66,14 @@
 		4EBD2FE018B1485E0093A21F /* TableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableData.h; sourceTree = "<group>"; };
 		4EBD2FE118B1485E0093A21F /* TableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableData.m; sourceTree = "<group>"; };
 		4EBD2FE218B1485E0093A21F /* TableRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableRow.h; sourceTree = "<group>"; };
-		4EBD2FE318B1485E0093A21F /* TableRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableRow.m; sourceTree = "<group>"; };
 		4EBD2FED18B149DB0093A21F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		4EBD2FEF18B1522E0093A21F /* CRT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CRT.entitlements; sourceTree = "<group>"; };
 		4EC9E5FE18B1447C00EBE2B8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		4EC9E5FF18B1447C00EBE2B8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4EC9E60018B1447C00EBE2B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4EC9E61A18B1447C00EBE2B8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4ECBADBA1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+TableRowExt.h"; sourceTree = "<group>"; };
+		4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+TableRowExt.m"; sourceTree = "<group>"; };
 		DD4F7C0813C30F9F00825C6E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DD4F7C0B13C30F9F00825C6E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DD4F7C0C13C30F9F00825C6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -133,9 +134,10 @@
 				4EBD2FE018B1485E0093A21F /* TableData.h */,
 				4EBD2FE118B1485E0093A21F /* TableData.m */,
 				4EBD2FE218B1485E0093A21F /* TableRow.h */,
-				4EBD2FE318B1485E0093A21F /* TableRow.m */,
 				4E7C04F818B2232100C0633E /* CRT_SettingsDelegate.h */,
 				4E7C04F918B2232100C0633E /* CRT_SettingsDelegate.m */,
+				4ECBADBA1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.h */,
+				4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */,
 			);
 			name = "VNC Servers List";
 			sourceTree = "<group>";
@@ -262,7 +264,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBD2FD118B148340093A21F /* Panel.m in Sources */,
-				4EBD2FE818B1485E0093A21F /* TableRow.m in Sources */,
 				4EBD2FE518B1485E0093A21F /* NSFileManager+DirectoryLocations.m in Sources */,
 				4EBD2FD918B148340093A21F /* StatusItemView.m in Sources */,
 				4EBD2FD318B148340093A21F /* PanelController.m in Sources */,
@@ -273,6 +274,7 @@
 				4E7C04FA18B2232100C0633E /* CRT_SettingsDelegate.m in Sources */,
 				4EBD2FD018B148340093A21F /* MenubarController.m in Sources */,
 				4EBD2FE718B1485E0093A21F /* TableData.m in Sources */,
+				4ECBADBC1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

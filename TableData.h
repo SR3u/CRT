@@ -10,7 +10,7 @@
 #import "TableRow.h"
 @interface TableData : NSObject
 {
-    IBOutlet NSMutableArray *data;
+    NSMutableArray *data;
     IBOutlet NSTableView *table;
 }
 -(void) add:(TableRow*)row;

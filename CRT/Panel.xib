@@ -97,7 +97,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="L0g-tz-Y4e" id="T9i-zZ-Wlc">
-                                    <rect key="frame" x="0.0" y="0.0" width="279.5" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,11 +343,9 @@
         </customObject>
         <customObject id="O42-tJ-B6P" customClass="TableData">
             <connections>
-                <outlet property="data" destination="9iG-lq-b7T" id="nvT-4n-8xX"/>
                 <outlet property="table" destination="T9i-zZ-Wlc" id="J6R-m4-PM2"/>
             </connections>
         </customObject>
-        <customObject id="9iG-lq-b7T" customClass="NSMutableArray"/>
         <window title="CRT Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="M14-5h-KMX">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

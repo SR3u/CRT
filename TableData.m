@@ -7,9 +7,15 @@
 //
 
 #import "TableData.h"
-
-
 @implementation TableData
+-(id) init
+{
+    if(!(self=[super init]))
+        return nil;
+    self->data=[NSMutableArray new];
+    return self;
+}
+
 -(void) add:(TableRow*)row
 {
     [data addObject:row];
@@ -56,17 +62,26 @@
         [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"servername" ascending: YES];
         [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-        NSData *Data = [NSKeyedArchiver archivedDataWithRootObject:data];
-        [Data writeToFile:FileName options:NSDataWritingAtomic error:nil];
+        NSDictionary *dict=[NSDictionary dictionaryWithObjectsAndKeys:data,@"servers", nil];
+        
+        NSData *dat=[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+        NSString *JSONString=[[NSString alloc]initWithData:dat encoding:NSUTF8StringEncoding];
+        NSError *err=nil;
+        [JSONString writeToFile:FileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
+        if (err!=nil){NSLog(@"Failed to save servers list!\nERROR:\n%@",err);}
     });
 }
 -(void)loadFromFile:(NSString*)FileName
 {
-    data=[NSKeyedUnarchiver unarchiveObjectWithFile:FileName];
-    if (data == nil)
-    {
-        data=[NSMutableArray array];
-    }
+    NSError* err=nil;
+    NSString* JSONString=[NSString stringWithContentsOfFile:FileName
+                                                   encoding:NSUTF8StringEncoding error:&err];
+    if(err!=nil){NSLog(@"Failed to load settings!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
+    if([JSONString isEqual:@""]){data=[NSMutableArray new];return;}
+    NSData *jsonData=[JSONString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict=[[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil] mutableCopy];
+    data=[[dict objectForKey:@"servers"] mutableCopy];
+    if (data == nil){data=[NSMutableArray new];}
 }
 
 -(void)replaceObjectAtIndex:(NSInteger)index  withObject:(id)Obj
