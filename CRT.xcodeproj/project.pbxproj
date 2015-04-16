@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E3B835B18C4F3BD005E5ABF /* CRT_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */; };
+		4E4F366B1ADFE3DD00FF3893 /* jsonTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */; };
 		4E7C04FA18B2232100C0633E /* CRT_SettingsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7C04F918B2232100C0633E /* CRT_SettingsDelegate.m */; };
 		4EBD2F8018B147F70093A21F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0813C30F9F00825C6E /* Cocoa.framework */; };
 		4EBD2F9418B147F70093A21F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2F9318B147F70093A21F /* Images.xcassets */; };
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CRT_Icon.icns; sourceTree = "<group>"; };
+		4E4F36691ADFE3DD00FF3893 /* jsonTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsonTools.h; sourceTree = "<group>"; };
+		4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jsonTools.m; sourceTree = "<group>"; };
 		4E7C04F818B2232100C0633E /* CRT_SettingsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRT_SettingsDelegate.h; sourceTree = "<group>"; };
 		4E7C04F918B2232100C0633E /* CRT_SettingsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRT_SettingsDelegate.m; sourceTree = "<group>"; };
 		4EBD2F7F18B147F70093A21F /* CRT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +95,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E4F36681ADFE3DD00FF3893 /* jsonTools */ = {
+			isa = PBXGroup;
+			children = (
+				4E4F36691ADFE3DD00FF3893 /* jsonTools.h */,
+				4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */,
+			);
+			path = jsonTools;
+			sourceTree = "<group>";
+		};
 		4EBD2F8118B147F70093A21F /* CRT */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */,
+				4E4F36681ADFE3DD00FF3893 /* jsonTools */,
 				4EBD2FDA18B1483A0093A21F /* VNC Servers List */,
 				4EBD2F8118B147F70093A21F /* CRT */,
 				DD4F7C0713C30F9F00825C6E /* Frameworks */,
@@ -210,7 +223,7 @@
 		DD4F7BFB13C30F9F00825C6E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				TargetAttributes = {
 					4EBD2F7E18B147F70093A21F = {
 						SystemCapabilities = {
@@ -274,6 +287,7 @@
 				4E7C04FA18B2232100C0633E /* CRT_SettingsDelegate.m in Sources */,
 				4EBD2FD018B148340093A21F /* MenubarController.m in Sources */,
 				4EBD2FE718B1485E0093A21F /* TableData.m in Sources */,
+				4E4F366B1ADFE3DD00FF3893 /* jsonTools.m in Sources */,
 				4ECBADBC1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +364,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -386,6 +401,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;

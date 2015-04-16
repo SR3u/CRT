@@ -7,6 +7,7 @@
 //
 
 #import "TableData.h"
+#import "jsonTools.h"
 @implementation TableData
 -(id) init
 {
@@ -57,19 +58,18 @@
 -(void)saveToFile:(NSString*)FileName
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-    ^{
+    ^{@autoreleasepool{
         NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"nokey" ascending: YES];
         [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"servername" ascending: YES];
         [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         NSDictionary *dict=[NSDictionary dictionaryWithObjectsAndKeys:data,@"servers", nil];
         
-        NSData *dat=[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
-        NSString *JSONString=[[NSString alloc]initWithData:dat encoding:NSUTF8StringEncoding];
+        NSString *JSONString=[dict jsonStringWithPrettyPrint:YES];
         NSError *err=nil;
         [JSONString writeToFile:FileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
         if (err!=nil){NSLog(@"Failed to save servers list!\nERROR:\n%@",err);}
-    });
+    }});
 }
 -(void)loadFromFile:(NSString*)FileName
 {
@@ -78,8 +78,7 @@
                                                    encoding:NSUTF8StringEncoding error:&err];
     if(err!=nil){NSLog(@"Failed to load servers list!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
     if([JSONString isEqual:@""]){data=[NSMutableArray new];return;}
-    NSData *jsonData=[JSONString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *dict=[[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil] mutableCopy];
+    NSDictionary *dict=[NSDictionary dictionaryWithJSONString:JSONString];
     data=[[dict objectForKey:@"servers"] mutableCopy];
     if (data == nil){data=[NSMutableArray new];}
 }

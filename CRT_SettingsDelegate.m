@@ -8,6 +8,7 @@
 
 #import "CRT_SettingsDelegate.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "jsonTools.h"
 
 @implementation CRT_SettingsDelegate
 
@@ -41,7 +42,7 @@
     return str;
 }
 -(NSDictionary*) loadSettingsFromFile:(NSString*)fileName
-{
+{@autoreleasepool{
     NSMutableDictionary* newSettingsDict;
     NSError* err=nil;
     NSString* JSONString=[NSString stringWithContentsOfFile:[self SettingsJSONFile]
@@ -49,23 +50,22 @@
     if(err!=nil){NSLog(@"Failed to load settings!\nERROR:\n%@",err);return nil;}
     if([JSONString isEqual:@""])
         return nil;
-    NSData *jsonData=[JSONString dataUsingEncoding:NSUTF8StringEncoding];
-    newSettingsDict=[[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil] mutableCopy];
+    newSettingsDict=[NSMutableDictionary dictionaryWithJSONString:JSONString];
     if([newSettingsDict objectForKey:@"version"]==nil){return nil;}
     return newSettingsDict;
-}
+}}
 -(void) saveSettingsToFile:(NSString*)fileName
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-    ^{
-    if([settingsDict isEqual:[self loadSettingsFromFile:[self SettingsJSONFile]]])
-        return;
-    NSData *dat=[NSJSONSerialization dataWithJSONObject:settingsDict options:0 error:nil];
-    NSString *JSONString=[[NSString alloc]initWithData:dat encoding:NSUTF8StringEncoding];
-    NSError *err=nil;
-    [JSONString writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
-    if (err!=nil){NSLog(@"Failed to save settings!\nERROR:\n%@",err);}
-    });
+    ^{@autoreleasepool{
+        if([settingsDict isEqual:[self loadSettingsFromFile:[self SettingsJSONFile]]])
+            return;
+        NSString *JSONString=[settingsDict jsonStringWithPrettyPrint:YES];
+        NSError *err=nil;
+        [JSONString writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
+        if (err!=nil){NSLog(@"Failed to save settings!\nERROR:\n%@",err);}
+
+    }});
 }
 -(void) refreshUI
 {
