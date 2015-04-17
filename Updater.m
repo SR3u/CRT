@@ -36,24 +36,28 @@ NSString *currentVersion=nil;
     return YES;
 }}
 
-+(void) update
++(BOOL) update
 {@autoreleasepool{
-    if(latestVersionURL==nil){return;}
-    if(latestVersion==nil){return;}
-    if(currentVersion==nil){return;}
+    if(latestVersionURL==nil){return YES;}
+    if(latestVersion==nil){return YES;}
+    if(currentVersion==nil){return YES;}
     NSAlert* confirmAlert = [NSAlert alertWithMessageText:@"A new CRT update released!"
-                                            defaultButton:@"Yes"
-                                          alternateButton:@"No"
-                                              otherButton:nil
+                                            defaultButton:@"Yes"//1
+                                          alternateButton:@"No"//0
+                                              otherButton:@"No and never ask again"//-1
                                 informativeTextWithFormat:@"New CRT version available: %@, you use: %@\nDownload now?",
                                                           latestVersion,currentVersion];
-    
-    if ([confirmAlert runModal]==NSModalResponseOK)
+    NSInteger res=[confirmAlert runModal];
+    if (res==1)
     {dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         NSURL *updateURL=[NSURL URLWithString:latestVersionURL];
         if(![[NSWorkspace sharedWorkspace] openURL:updateURL])
             NSLog(@"Failed to open update url: %@",[updateURL description]);
     });}
-    return;
+    else if (res==-1)
+    {
+        return NO;
+    }
+    return YES;
 }}
 @end

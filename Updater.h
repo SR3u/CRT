@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 @interface Updater : NSObject
 +(BOOL) updateNeededForVersion:(NSString*)curVersion;
-+(void) update;
++(BOOL) update;
 @end

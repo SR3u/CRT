@@ -28,7 +28,7 @@
 -(IBAction)checkForUpdate:(id)sender
 {
     if([Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]])
-        [Updater update];
+        if([Updater update]==NO){[settingsDict setObject:@NO forKey:@"autoupdate"];}
     else
     {
         if(sender!=self)
