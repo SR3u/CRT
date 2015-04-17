@@ -8,25 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
+#define jsonTools_Default_prettyPrint NO
+#define jsonTools_Default_encoding NSUTF8StringEncoding
+
 @interface NSDictionary (jsonTools)
 -(NSString*) jsonString;
--(NSString*) jsonStringWithPrettyPrint:(BOOL) prettyPrint;//prettyPrint means more human-readable
-+(NSDictionary*) dictionaryWithJSONString:(NSString*) jsonString;//all objects inside are NOT mutable
-+(NSString*) jsonToolsVersion;//returns string with current jsonTools version for this class
+-(NSString*) jsonStringWithPrettyPrint:(BOOL)prettyPrint;//prettyPrint means more human-readable
+-(NSString*) jsonStringWithPrettyPrint:(BOOL) prettyPrint encoding:(NSStringEncoding)encoding;
+-(NSString*) jsonStringWithEncoding:(NSStringEncoding)encoding;
++(NSDictionary*) dictionaryWithJSONString:(NSString*)jsonString;//all objects inside are NOT mutable
++(NSDictionary*) dictionaryWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding;//all objects inside are NOT mutable
 @end
 @interface NSArray (jsonTools)
 -(NSString*) jsonString;
 -(NSString *)jsonStringWithPrettyPrint:(BOOL)prettyPrint;//prettyPrint means more human-readable
-+(NSArray*) arrayWithJSONString:(NSString*) jsonString;//all objects inside are NOT mutable
-+(NSString*) jsonToolsVersion;//returns string with current jsonTools version for this class
+-(NSString*) jsonStringWithPrettyPrint:(BOOL) prettyPrint encoding:(NSStringEncoding)encoding;
+-(NSString*) jsonStringWithEncoding:(NSStringEncoding)encoding;
++(NSArray*) arrayWithJSONString:(NSString*)jsonString;//all objects inside are NOT mutable
++(NSArray*) arrayWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding;//all objects inside are NOT mutable
 @end
 
 @interface NSMutableDictionary (jsonTools)
-+(NSMutableDictionary*) dictionaryWithJSONString:(NSString*) jsonString;//all objects inside are mutable
-+(NSString*) jsonToolsVersion;//returns string with current jsonTools version for this class
++(NSMutableDictionary*) dictionaryWithJSONString:(NSString*)jsonString;//all objects inside are mutable
++(NSMutableDictionary*) dictionaryWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding;//all objects inside are NOT mutable
 @end
 @interface NSMutableArray (jsonTools)
-+(NSMutableArray*) arrayWithJSONString:(NSString*) jsonString;//all objects inside are mutable
-+(NSString*) jsonToolsVersion;//returns string with current jsonTools version for this class
++(NSMutableArray*) arrayWithJSONString:(NSString*)jsonString;//all objects inside are mutable
++(NSMutableArray*) arrayWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding;//all objects inside are mutable
 @end
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E3536031AE163F200421D56 /* Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3536021AE163F200421D56 /* Updater.m */; };
 		4E3B835B18C4F3BD005E5ABF /* CRT_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */; };
 		4E4F366B1ADFE3DD00FF3893 /* jsonTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */; };
 		4E7C04FA18B2232100C0633E /* CRT_SettingsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7C04F918B2232100C0633E /* CRT_SettingsDelegate.m */; };
@@ -33,6 +34,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E3536011AE163E500421D56 /* Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
+		4E3536021AE163F200421D56 /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
+		4E3536041AE1680B00421D56 /* updateinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updateinfo.json; sourceTree = "<group>"; };
 		4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CRT_Icon.icns; sourceTree = "<group>"; };
 		4E4F36691ADFE3DD00FF3893 /* jsonTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsonTools.h; sourceTree = "<group>"; };
 		4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jsonTools.m; sourceTree = "<group>"; };
@@ -95,6 +99,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E3536001AE163CA00421D56 /* Updater */ = {
+			isa = PBXGroup;
+			children = (
+				4E3536041AE1680B00421D56 /* updateinfo.json */,
+				4E3536011AE163E500421D56 /* Updater.h */,
+				4E3536021AE163F200421D56 /* Updater.m */,
+			);
+			name = Updater;
+			sourceTree = "<group>";
+		};
 		4E4F36681ADFE3DD00FF3893 /* jsonTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +185,7 @@
 				4E4F36681ADFE3DD00FF3893 /* jsonTools */,
 				4EBD2FDA18B1483A0093A21F /* VNC Servers List */,
 				4EBD2F8118B147F70093A21F /* CRT */,
+				4E3536001AE163CA00421D56 /* Updater */,
 				DD4F7C0713C30F9F00825C6E /* Frameworks */,
 				DD4F7C0513C30F9F00825C6E /* Products */,
 			);
@@ -281,6 +296,7 @@
 				4EBD2FD918B148340093A21F /* StatusItemView.m in Sources */,
 				4EBD2FD318B148340093A21F /* PanelController.m in Sources */,
 				4EBD2FE418B1485E0093A21F /* CRT_Delegate.m in Sources */,
+				4E3536031AE163F200421D56 /* Updater.m in Sources */,
 				4EBD2FC918B148340093A21F /* ApplicationDelegate.m in Sources */,
 				4EBD2FCF18B148340093A21F /* main.m in Sources */,
 				4EBD2FCA18B148340093A21F /* BackgroundView.m in Sources */,

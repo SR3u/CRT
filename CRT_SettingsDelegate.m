@@ -9,24 +9,44 @@
 #import "CRT_SettingsDelegate.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "jsonTools.h"
+#import "Updater.h"
 
 @implementation CRT_SettingsDelegate
 
 -(id) init
-{
+{@autoreleasepool{
     if(!(self=[super init]))
         return nil;
-    [self loadSettingsFromFile:[self SettingsJSONFile]];
+    settingsDict=[self loadSettingsFromFile:[self SettingsJSONFile]];
     if(settingsDict==nil)
         settingsDict=[[self defaultSettings] mutableCopy];
     [settingsDict setObject:[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]forKey:@"version"];
+    if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[self checkForUpdate:self];}
     [self saveSettingsToFile:[self SettingsJSONFile]];
     return self;
+}}
+-(IBAction)checkForUpdate:(id)sender
+{
+    if([Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]])
+        [Updater update];
+    else
+    {
+        if(sender!=self)
+        {
+            NSAlert* confirmAlert = [NSAlert alertWithMessageText:@"No updates found!"
+                                                    defaultButton:@"OK"
+                                                  alternateButton:nil
+                                                      otherButton:nil
+                                        informativeTextWithFormat:@"You are usilg the latest version of CRT!"];
+            [confirmAlert runModal];
+        }
+    }
 }
 -(NSDictionary*) defaultSettings
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],@"version",
+                       @YES,@"autoupdate",
                        //@1,@"dblClickAction",
                        nil];
     return res;
@@ -41,7 +61,7 @@
     }
     return str;
 }
--(NSDictionary*) loadSettingsFromFile:(NSString*)fileName
+-(NSMutableDictionary*) loadSettingsFromFile:(NSString*)fileName
 {@autoreleasepool{
     NSMutableDictionary* newSettingsDict;
     NSError* err=nil;
@@ -70,10 +90,14 @@
 -(void) refreshUI
 {
    //[dblClickAction selectItemAtIndex:[[settingsDict objectForKey:@"dblClickAction"] integerValue]];
+    if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[autoupdate setState:NSOnState];}
+    else{[autoupdate setState:NSOffState];}
 }
 -(void) refreshSettings
 {
     //[settingsDict setObject:[NSNumber numberWithInteger:[dblClickAction indexOfSelectedItem]] forKey:@"dblClickAction"];
+    if([autoupdate state]==NSOnState){[settingsDict setObject:@YES forKey:@"autoupdate"];}
+    else{[settingsDict setObject:@NO forKey:@"autoupdate"];}
 }
 
 -(NSDictionary*) getSettings

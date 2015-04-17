@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CRT_Delegate.h"
-
+#import "Updater.h"
 @interface CRT_SettingsDelegate : NSObject<NSWindowDelegate>
 {
     IBOutlet NSWindow *window;
@@ -18,6 +18,8 @@
     NSMutableDictionary* settingsDict;
     NSDictionary* defaultSettings;
     IBOutlet CRT_Delegate *crtDelegate;
+    
+    IBOutlet NSButton* autoupdate;
 }
 -(NSDictionary*) getSettings;
 

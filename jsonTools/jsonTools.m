@@ -3,36 +3,41 @@
 //  JSON Tools
 //
 //  Created by Sergey Rump on 14.04.15.
-//  Copyright (c) 2015 SR3u. All rights reserved.
+//  Copyright (c)2015 SR3u. All rights reserved.
 //
 
 #import "jsonTools.h"
 
 @implementation NSDictionary (jsonTools)
-+(NSString*) jsonToolsVersion{return @"0.0.1";};
--(NSString*) jsonString{return [self jsonStringWithPrettyPrint:NO];}
--(NSString*) jsonStringWithPrettyPrint:(BOOL) prettyPrint
+-(NSString*)jsonString{return [self jsonStringWithPrettyPrint:jsonTools_Default_prettyPrint];}
+-(NSString*)jsonStringWithPrettyPrint:(BOOL)prettyPrint
+{return [self jsonStringWithPrettyPrint:prettyPrint encoding:jsonTools_Default_encoding];}
+-(NSString*)jsonStringWithPrettyPrint:(BOOL)prettyPrint encoding:(NSStringEncoding)encoding
 {
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
-                                                       options:(NSJSONWritingOptions)    (prettyPrint ? NSJSONWritingPrettyPrinted : 0)
+                                                       options:(NSJSONWritingOptions)(prettyPrint ? NSJSONWritingPrettyPrinted : 0)
                                                          error:&error];
     if (! jsonData)
     {
-        NSLog(@"jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
         return @"{}";
     }
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:jsonData encoding:jsonTools_Default_encoding];
 }
-+(NSDictionary*) dictionaryWithJSONString:(NSString*) jsonString
+-(NSString*) jsonStringWithEncoding:(NSStringEncoding)encoding
+{return [self jsonStringWithPrettyPrint:jsonTools_Default_prettyPrint encoding:encoding];}
++(NSDictionary*)dictionaryWithJSONString:(NSString*)jsonString
+{return [self dictionaryWithJSONString:jsonString encoding:jsonTools_Default_encoding];}
++(NSDictionary*)dictionaryWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding;
 {
     NSError* error;
-    NSDictionary* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                                     options:0
-                                                       error:&error];
+    NSDictionary* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:encoding]
+                                                      options:0
+                                                        error:&error];
     if (error!=nil)
     {
-        NSLog(@"dictionaryWithJSONString: error: %@", error.localizedDescription);
+        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
         return nil;
     }
     return res;
@@ -40,30 +45,35 @@
 @end
 
 @implementation NSArray (jsonTools)
-+(NSString*) jsonToolsVersion{return @"0.0.1";};
--(NSString*) jsonString{return [self jsonStringWithPrettyPrint:NO];}
--(NSString*) jsonStringWithPrettyPrint:(BOOL) prettyPrint
+-(NSString*)jsonString{return [self jsonStringWithPrettyPrint:jsonTools_Default_prettyPrint];}
+-(NSString*)jsonStringWithPrettyPrint:(BOOL)prettyPrint
+{return [self jsonStringWithPrettyPrint:prettyPrint encoding:jsonTools_Default_encoding];}
+-(NSString*)jsonStringWithPrettyPrint:(BOOL)prettyPrint encoding:(NSStringEncoding)encoding
 {
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
-                                                       options:(NSJSONWritingOptions) (prettyPrint ? NSJSONWritingPrettyPrinted : 0)
+                                                       options:(NSJSONWritingOptions)(prettyPrint ? NSJSONWritingPrettyPrinted : 0)
                                                          error:&error];
     if (! jsonData)
     {
-        NSLog(@"jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
         return @"[]";
     }
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:jsonData encoding:encoding];
 }
-+(NSArray*) arrayWithJSONString:(NSString*) jsonString
+-(NSString*) jsonStringWithEncoding:(NSStringEncoding)encoding
+{return [self jsonStringWithPrettyPrint:jsonTools_Default_prettyPrint encoding:encoding];}
++(NSArray*)arrayWithJSONString:(NSString*)jsonString
+{return [self arrayWithJSONString:jsonString encoding:jsonTools_Default_encoding];}
++(NSArray*)arrayWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding
 {
     NSError* error;
-    NSArray* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+    NSArray* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:encoding]
                                                  options:0
                                                    error:&error];
     if (error!=nil)
     {
-        NSLog(@"arrayWithJSONString: error: %@", error.localizedDescription);
+        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
         return nil;
     }
     return res;
@@ -71,17 +81,17 @@
 @end
 
 @implementation NSMutableDictionary (jsonTools)
-+(NSString*) jsonToolsVersion{return @"0.0.1";};
-
-+(NSMutableDictionary*) dictionaryWithJSONString:(NSString*) jsonString
++(NSMutableDictionary*)dictionaryWithJSONString:(NSString*)jsonString
+{return [self dictionaryWithJSONString:jsonString encoding:jsonTools_Default_encoding];}
++(NSMutableDictionary*)dictionaryWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding
 {
     NSError* error;
-    NSMutableDictionary* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+    NSMutableDictionary* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:encoding]
                                         options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
                                                                error:&error];
     if (error!=nil)
     {
-        NSLog(@"dictionaryWithJSONString: error: %@", error.localizedDescription);
+        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
         return nil;
     }
     return res;
@@ -89,16 +99,17 @@
 @end
 
 @implementation NSMutableArray (jsonTools)
-+(NSString*) jsonToolsVersion{return @"0.0.1";};
-+(NSMutableArray*) arrayWithJSONString:(NSString*) jsonString
++(NSMutableArray*)arrayWithJSONString:(NSString*)jsonString
+{return [self arrayWithJSONString:jsonString encoding:jsonTools_Default_encoding];}
++(NSMutableArray*)arrayWithJSONString:(NSString*)jsonString encoding:(NSStringEncoding)encoding
 {
     NSError* error;
-    NSMutableArray* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+    NSMutableArray* res=[NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:encoding]
                                                  options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves
                                                    error:&error];
     if (error!=nil)
     {
-        NSLog(@"arrayWithJSONString: error: %@", error.localizedDescription);
+        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
         return nil;
     }
     return res;

@@ -20,7 +20,6 @@
 @synthesize delegate = _delegate;
 
 #pragma mark -
-
 - (id)initWithDelegate:(id<PanelControllerDelegate>)delegate
 {
     self = [super initWithWindowNibName:@"Panel"];

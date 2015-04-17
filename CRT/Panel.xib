@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PanelController">
@@ -75,10 +75,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="L0g-tz-Y4e" id="T9i-zZ-Wlc">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="408" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="servername" editable="NO" width="120" minWidth="40" maxWidth="1000" id="Ask-mj-723">
@@ -322,6 +322,7 @@
         <customObject id="WZc-Kf-QCg" customClass="CRT_SettingsDelegate">
             <connections>
                 <outlet property="Version" destination="DjE-1L-NoR" id="duX-mw-ibY"/>
+                <outlet property="autoupdate" destination="Voh-Do-SBA" id="7de-dv-4JI"/>
                 <outlet property="crtDelegate" destination="eB5-5H-uW1" id="HIi-PG-ORk"/>
                 <outlet property="window" destination="M14-5h-KMX" id="JkL-gm-eHI"/>
             </connections>
@@ -350,14 +351,14 @@
         <window title="CRT Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="M14-5h-KMX">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="165" width="302" height="27"/>
+            <rect key="contentRect" x="131" y="165" width="336" height="113"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="zte-UM-GcG">
-                <rect key="frame" x="0.0" y="17" width="302" height="27"/>
+                <rect key="frame" x="0.0" y="0.0" width="336" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="HL6-0u-9sV">
-                        <rect key="frame" x="267" y="3" width="25" height="25"/>
+                        <rect key="frame" x="313" y="-3" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uzL-xo-nSF">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -368,7 +369,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DjE-1L-NoR">
-                        <rect key="frame" x="58" y="10" width="50" height="17"/>
+                        <rect key="frame" x="61" y="4" width="50" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.0000" id="VpY-bp-4FD">
                             <font key="font" metaFont="system"/>
@@ -377,7 +378,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sxN-KS-nlS">
-                        <rect key="frame" x="112" y="10" width="151" height="17"/>
+                        <rect key="frame" x="158" y="4" width="151" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="ZE2-25-UQN">
                             <font key="font" metaFont="system"/>
@@ -389,7 +390,7 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="APw-rx-0Sg">
-                        <rect key="frame" x="4" y="10" width="55" height="17"/>
+                        <rect key="frame" x="7" y="4" width="55" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version:" id="ChS-JK-SHA">
                             <font key="font" metaFont="system"/>
@@ -397,12 +398,31 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button id="Voh-Do-SBA">
+                        <rect key="frame" x="7" y="35" width="222" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Check for updates automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uy0-UX-MrR">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" id="9Em-JX-r1S">
+                        <rect key="frame" x="229" y="26" width="109" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Check now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QFZ-8h-hfI">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="checkForUpdate:" target="WZc-Kf-QCg" id="GJl-qO-Zpz"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="WZc-Kf-QCg" id="qA9-oB-p2f"/>
             </connections>
-            <point key="canvasLocation" x="-344" y="364.5"/>
+            <point key="canvasLocation" x="-327" y="407.5"/>
         </window>
     </objects>
 </document>
