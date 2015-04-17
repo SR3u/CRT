@@ -26,9 +26,9 @@
     return self;
 }}
 -(IBAction)checkForUpdate:(id)sender
-{
-    if([Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]])
-        if([Updater update]==NO){[settingsDict setObject:@NO forKey:@"autoupdate"];}
+{@autoreleasepool{
+    BOOL upd=[Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]];
+    if(upd){if([Updater update]==NO){[settingsDict setObject:@NO forKey:@"autoupdate"];}}
     else
     {
         if(sender!=self)
@@ -41,7 +41,7 @@
             [confirmAlert runModal];
         }
     }
-}
+}}
 -(NSDictionary*) defaultSettings
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
