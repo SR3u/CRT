@@ -63,9 +63,8 @@
         [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"servername" ascending: YES];
         [table setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-        NSDictionary *dict=[NSDictionary dictionaryWithObjectsAndKeys:data,@"servers", nil];
         
-        NSString *JSONString=[dict jsonStringWithPrettyPrint:YES];
+        NSString *JSONString=[data jsonStringWithPrettyPrint:YES];
         NSError *err=nil;
         [JSONString writeToFile:FileName atomically:YES encoding:NSUTF8StringEncoding error:&err];
         if (err!=nil){NSLog(@"Failed to save servers list!\nERROR:\n%@",err);}
@@ -78,8 +77,7 @@
                                                    encoding:NSUTF8StringEncoding error:&err];
     if(err!=nil){NSLog(@"Failed to load servers list!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
     if([JSONString isEqual:@""]){data=[NSMutableArray new];return;}
-    NSDictionary *dict=[NSDictionary dictionaryWithJSONString:JSONString];
-    data=[[dict objectForKey:@"servers"] mutableCopy];
+    NSDictionary *dict=[NSMutableArray arrayWithJSONString:JSONString];
     if (data == nil){data=[NSMutableArray new];}
 }
 
