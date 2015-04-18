@@ -77,7 +77,7 @@
                                                    encoding:NSUTF8StringEncoding error:&err];
     if(err!=nil){NSLog(@"Failed to load servers list!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
     if([JSONString isEqual:@""]){data=[NSMutableArray new];return;}
-    NSDictionary *dict=[NSMutableArray arrayWithJSONString:JSONString];
+    data=[NSMutableArray arrayWithJSONString:JSONString];
     if (data == nil){data=[NSMutableArray new];}
 }
 
