@@ -20,14 +20,9 @@
 		4EBD2FD118B148340093A21F /* Panel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FBD18B148340093A21F /* Panel.m */; };
 		4EBD2FD218B148340093A21F /* Panel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FBE18B148340093A21F /* Panel.xib */; };
 		4EBD2FD318B148340093A21F /* PanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FC018B148340093A21F /* PanelController.m */; };
-		4EBD2FD518B148340093A21F /* Status.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FC318B148340093A21F /* Status.png */; };
-		4EBD2FD618B148340093A21F /* Status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FC418B148340093A21F /* Status@2x.png */; };
-		4EBD2FD718B148340093A21F /* StatusHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FC518B148340093A21F /* StatusHighlighted.png */; };
-		4EBD2FD818B148340093A21F /* StatusHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FC618B148340093A21F /* StatusHighlighted@2x.png */; };
 		4EBD2FD918B148340093A21F /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FC818B148340093A21F /* StatusItemView.m */; };
 		4EBD2FE418B1485E0093A21F /* CRT_Delegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FDC18B1485E0093A21F /* CRT_Delegate.m */; };
 		4EBD2FE518B1485E0093A21F /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FDE18B1485E0093A21F /* NSFileManager+DirectoryLocations.m */; };
-		4EBD2FE618B1485E0093A21F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FDF18B1485E0093A21F /* README.md */; };
 		4EBD2FE718B1485E0093A21F /* TableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FE118B1485E0093A21F /* TableData.m */; };
 		4EBD2FEE18B149DB0093A21F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FED18B149DB0093A21F /* MainMenu.xib */; };
 		4ECBADBC1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */; };
@@ -60,10 +55,6 @@
 		4EBD2FBF18B148340093A21F /* PanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelController.h; sourceTree = "<group>"; };
 		4EBD2FC018B148340093A21F /* PanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelController.m; sourceTree = "<group>"; };
 		4EBD2FC218B148340093A21F /* Popup-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Popup-Prefix.pch"; sourceTree = "<group>"; };
-		4EBD2FC318B148340093A21F /* Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status.png; sourceTree = "<group>"; };
-		4EBD2FC418B148340093A21F /* Status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Status@2x.png"; sourceTree = "<group>"; };
-		4EBD2FC518B148340093A21F /* StatusHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusHighlighted.png; sourceTree = "<group>"; };
-		4EBD2FC618B148340093A21F /* StatusHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StatusHighlighted@2x.png"; sourceTree = "<group>"; };
 		4EBD2FC718B148340093A21F /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemView.h; sourceTree = "<group>"; };
 		4EBD2FC818B148340093A21F /* StatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemView.m; sourceTree = "<group>"; };
 		4EBD2FDB18B1485E0093A21F /* CRT_Delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRT_Delegate.h; sourceTree = "<group>"; };
@@ -139,10 +130,6 @@
 				4EBD2FBF18B148340093A21F /* PanelController.h */,
 				4EBD2FC018B148340093A21F /* PanelController.m */,
 				4EBD2FC218B148340093A21F /* Popup-Prefix.pch */,
-				4EBD2FC318B148340093A21F /* Status.png */,
-				4EBD2FC418B148340093A21F /* Status@2x.png */,
-				4EBD2FC518B148340093A21F /* StatusHighlighted.png */,
-				4EBD2FC618B148340093A21F /* StatusHighlighted@2x.png */,
 				4EBD2FC718B148340093A21F /* StatusItemView.h */,
 				4EBD2FC818B148340093A21F /* StatusItemView.m */,
 				4EBD2F9318B147F70093A21F /* Images.xcassets */,
@@ -275,14 +262,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBD2FEE18B149DB0093A21F /* MainMenu.xib in Resources */,
-				4EBD2FD518B148340093A21F /* Status.png in Resources */,
 				4EBD2FD218B148340093A21F /* Panel.xib in Resources */,
 				4EBD2F9418B147F70093A21F /* Images.xcassets in Resources */,
 				4E3B835B18C4F3BD005E5ABF /* CRT_Icon.icns in Resources */,
-				4EBD2FD618B148340093A21F /* Status@2x.png in Resources */,
-				4EBD2FD818B148340093A21F /* StatusHighlighted@2x.png in Resources */,
-				4EBD2FE618B1485E0093A21F /* README.md in Resources */,
-				4EBD2FD718B148340093A21F /* StatusHighlighted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

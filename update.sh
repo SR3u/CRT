@@ -3,6 +3,10 @@ log()
 {
     echo $@ >> "$UPDATELOG" 2>&1
 }
+download
+{
+    curl -sS "$1" > "$2"
+}
 OLDVERSION=$1
 NEWVERSION=$2
 APPPATH=$3
@@ -27,7 +31,7 @@ log update.log: $UPDATELOG
 log unzipping update
 log "unzip ./update.zip"
 unzip ./update.zip >> "$UPDATELOG" 2>&1
-log "replacing old app with new" 
+log "replacing old app with new"
 log  "rm -rf $APPPATH"
 rm -rf $APPPATH >> "$UPDATELOG" 2>&1
 mv -f ./CRT.app "$APPFOLDER" >> "$UPDATELOG" 2>&1
