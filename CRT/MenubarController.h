@@ -1,5 +1,3 @@
-#define STATUS_ITEM_VIEW_WIDTH 70.0
-
 #pragma mark -
 
 @class StatusItemView;
@@ -13,4 +11,5 @@
 @property (nonatomic, strong, readonly) NSStatusItem *statusItem;
 @property (nonatomic, strong, readonly) StatusItemView *statusItemView;
 
++(CGFloat) statusBarItemWidth;
 @end

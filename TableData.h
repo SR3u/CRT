@@ -14,9 +14,11 @@
     IBOutlet NSTableView *table;
 }
 -(void) add:(TableRow*)row;
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView;
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex;
-- (void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors;
+
+-(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView;
+-(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex;
+-(void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors;
+
 -(void)clear;
 -(void)saveToFile:(NSString*)FileName;
 -(void)loadFromFile:(NSString*)FileName;

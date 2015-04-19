@@ -30,7 +30,7 @@
     }
     return [data count];
 }
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex;
+-(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex;
 {
     TableRow *r=[data objectAtIndex:rowIndex];
     NSString *identifier=[aTableColumn identifier];
@@ -42,7 +42,7 @@
     {
         return [r getAddress];
     }
-    return nil;
+    return [r objectForKey:identifier];
 }
 - (void)tableView:(NSTableView *)aTableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
 {

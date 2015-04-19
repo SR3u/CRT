@@ -6,12 +6,14 @@
 @synthesize statusItemView = _statusItemView;
 
 #pragma mark -
+MenubarController* MenubarController_instance;
 
 - (id)init
 {
     self = [super init];
     if (self != nil)
     {@autoreleasepool{
+        MenubarController_instance=self;
         // Install status item into the menu bar
         NSImage* statusImage=[NSImage imageNamed:@"Status"];
         double statussize=statusImage.size.width;
@@ -22,6 +24,11 @@
         _statusItemView.action = @selector(togglePanel:);
     }}
     return self;
+}
+
++(CGFloat) statusBarItemWidth
+{
+    return [MenubarController_instance statusItemView].statusItem.length;
 }
 
 - (void)dealloc

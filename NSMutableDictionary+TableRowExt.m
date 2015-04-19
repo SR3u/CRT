@@ -22,10 +22,10 @@
 
 -(NSString*) getName
 {
-    return [self objectForKey:@"servername"];
+    return [self valueForKey:@"servername"];
 }
 -(NSString*) getAddress
 {
-    return [self objectForKey:@"serveradress"];
+    return [self valueForKey:@"serveradress"];
 }
 @end;
