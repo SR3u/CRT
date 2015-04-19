@@ -15,13 +15,13 @@
     IBOutlet NSTextView *Version;
     IBOutlet NSPopUpButton *dblClickAction;
     
-    NSMutableDictionary* settingsDict;
     NSDictionary* defaultSettings;
     IBOutlet CRT_Delegate *crtDelegate;
     
     IBOutlet NSButton* autoupdate;
 }
--(NSDictionary*) getSettings;
++(NSDictionary*) getSettings;
++(void) setObject:(id)val forKey:(id)key;
 
 -(id) init;
 

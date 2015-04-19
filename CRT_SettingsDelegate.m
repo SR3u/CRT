@@ -12,26 +12,29 @@
 #import "Updater.h"
 
 @implementation CRT_SettingsDelegate
-
+NSMutableDictionary* settingsDict;
+CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
 -(id) init
-{@autoreleasepool{
-    if(!(self=[super init]))
+{@autoreleasepool{@synchronized(CRT_SettingsDelegate_instance){
+    if(!(self =[super init]))
         return nil;
-    settingsDict=[self loadSettingsFromFile:[self SettingsJSONFile]];
+    if(CRT_SettingsDelegate_instance!=nil){NSLog(@"%s error: second singleton instance!",__PRETTY_FUNCTION__);return nil;}
+    CRT_SettingsDelegate_instance=self;
+    settingsDict=[[self class] loadSettingsFromFile:[[[self class] class] SettingsJSONFile]];
     if(settingsDict==nil)
-        settingsDict=[[self defaultSettings] mutableCopy];
+        settingsDict=[[[self class] defaultSettings] mutableCopy];
     [settingsDict setObject:[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]forKey:@"version"];
-    if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[self checkForUpdate:self];}
-    [self saveSettingsToFile:[self SettingsJSONFile]];
+    if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[self checkForUpdate:[self class]];}
+    [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];
     return self;
-}}
+}}}
 -(IBAction)checkForUpdate:(id)sender
 {dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{@autoreleasepool{
     BOOL upd=[Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]];
-    if(upd){if([Updater update]==NO){[settingsDict setObject:@NO forKey:@"autoupdate"];}}
+    if(upd){[Updater update];}
     else
     {
-        if(sender!=self)
+        if(sender!=[self class])
         {
             NSAlert* confirmAlert = [NSAlert alertWithMessageText:@"No updates found!"
                                                     defaultButton:@"OK"
@@ -42,16 +45,16 @@
         }
     }
 }});}
--(NSDictionary*) defaultSettings
++(NSDictionary*) defaultSettings
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],@"version",
-                       @YES,@"autoupdate",
+                       @YES,@"autoupdate",@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json",@"updateInfoURL",
                        //@1,@"dblClickAction",
                        nil];
     return res;
 }
--(NSString*)SettingsJSONFile
++(NSString*)SettingsJSONFile
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString* str=[[fileManager applicationSupportDirectory] stringByAppendingString:@"/Settings.json"];
@@ -61,11 +64,11 @@
     }
     return str;
 }
--(NSMutableDictionary*) loadSettingsFromFile:(NSString*)fileName
++(NSMutableDictionary*) loadSettingsFromFile:(NSString*)fileName
 {@autoreleasepool{
     NSMutableDictionary* newSettingsDict;
     NSError* err=nil;
-    NSString* JSONString=[NSString stringWithContentsOfFile:[self SettingsJSONFile]
+    NSString* JSONString=[NSString stringWithContentsOfFile:fileName
                                    encoding:NSUTF8StringEncoding error:&err];    
     if(err!=nil){NSLog(@"Failed to load settings!\nERROR:\n%@",err);return nil;}
     if([JSONString isEqual:@""])
@@ -74,11 +77,11 @@
     if([newSettingsDict objectForKey:@"version"]==nil){return nil;}
     return newSettingsDict;
 }}
--(void) saveSettingsToFile:(NSString*)fileName
++(void) saveSettingsToFile:(NSString*)fileName
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
     ^{@autoreleasepool{
-        if([settingsDict isEqual:[self loadSettingsFromFile:[self SettingsJSONFile]]])
+        if([settingsDict isEqual:[[self class] loadSettingsFromFile:[[self class] SettingsJSONFile]]])
             return;
         NSString *JSONString=[settingsDict jsonStringWithPrettyPrint:YES];
         NSError *err=nil;
@@ -99,15 +102,23 @@
     if([autoupdate state]==NSOnState){[settingsDict setObject:@YES forKey:@"autoupdate"];}
     else{[settingsDict setObject:@NO forKey:@"autoupdate"];}
 }
-
--(NSDictionary*) getSettings
++(void) setObject:(id)val forKey:(id)key
+{
+    if(![[settingsDict objectForKey:key] isEqualTo:val])
+    {
+        [settingsDict setObject:val forKey:key];
+        [[self class] saveSettingsToFile:[[self class]SettingsJSONFile]];
+        [CRT_SettingsDelegate_instance refreshUI];
+    }
+}
++(NSDictionary*) getSettings
 {
     return settingsDict;
 }
 -(BOOL)windowShouldClose:(id)sender
 {
     [self refreshSettings];
-    [self saveSettingsToFile:[self SettingsJSONFile]];
+    [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];
     [crtDelegate OpenPanel:sender];
     return YES;
 }

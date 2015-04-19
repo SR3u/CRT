@@ -8,8 +8,8 @@
 
 #import "Updater.h"
 #import "jsonTools.h"
-#import "PanelController.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "CRT_SettingsDelegate.h"
 
 @interface Updater()
 @end
@@ -21,12 +21,35 @@ NSString *latestVersionURL=nil;
 NSString *latestVersion=nil;
 NSString *currentVersion=nil;
 NSString *updateScriptURL=nil;
+NSString *appPath;
 
++(NSString*) getUpdateInfoURL
+{
+    NSDictionary *settings=[CRT_SettingsDelegate getSettings];
+    NSString*tmp= [settings objectForKey:@"updateInfoURL"];
+    if(tmp==nil)
+    {
+        [CRT_SettingsDelegate setObject:updateInfoURL forKey:@"updateInfoURL"];
+        return updateInfoURL;
+    }
+    return tmp;
+}
 +(BOOL) updateNeededForVersion:(NSString*)curVersion
 {@autoreleasepool{
+    appPath=[[NSBundle mainBundle] bundlePath];
+    if(appPath==nil){return NO;}
+    NSString* defaultUpdateInfoURL=updateInfoURL;
+    updateInfoURL=[[self class] getUpdateInfoURL];
     NSError *e;
     NSString *json=[NSString stringWithContentsOfURL:[NSURL URLWithString:updateInfoURL] encoding:NSUTF8StringEncoding error:&e];
-    if(e!=nil){NSLog(@"%s error:%@",__PRETTY_FUNCTION__,e);return NO;}
+    if(e!=nil)
+    {
+        NSLog(@"%s error:%@\nRetrying...",__PRETTY_FUNCTION__,e);
+        updateInfoURL=defaultUpdateInfoURL;
+        json=[NSString stringWithContentsOfURL:[NSURL URLWithString:updateInfoURL] encoding:NSUTF8StringEncoding error:&e];
+        if(e!=nil){NSLog(@"%s error:%@",__PRETTY_FUNCTION__,e);return NO;}
+        [CRT_SettingsDelegate setObject:updateInfoURL forKey:@"updateInfoURL"];
+    }
     if(json==nil){return NO;}
     NSDictionary *d=[NSDictionary dictionaryWithJSONString:json];
     if(d==nil){return NO;}
@@ -84,12 +107,24 @@ NSString *updateScriptURL=nil;
     }
     return YES;
 }
++(NSString*)appFolder
+{@autoreleasepool{if(appPath==nil){return nil;}
+    NSArray *arr=[appPath componentsSeparatedByString:@"/"];
+    NSString *appFolder=@"";
+    for(NSUInteger i=0;i<[arr count]-1;i++)
+    {
+        appFolder=[appFolder stringByAppendingString:@"/"];
+        appFolder=[appFolder stringByAppendingString:[arr objectAtIndex:i]];
+    }
+    return appFolder;
+}}
 +(BOOL) update
 {@autoreleasepool{
-    if(latestVersionURL==nil){return YES;}
-    if(latestVersion==nil){return YES;}
-    if(currentVersion==nil){return YES;}
-    if(updateScriptURL==nil){return YES;}
+    if(latestVersionURL==nil){return NO;}
+    if(latestVersion==nil){return NO;}
+    if(currentVersion==nil){return NO;}
+    if(updateScriptURL==nil){return NO;}
+    if(appPath==nil){return NO;}
     NSAlert* confirmAlert = [NSAlert alertWithMessageText:@"A new CRT update released!"
                                             defaultButton:@"Yes"//1
                                           alternateButton:@"No"//0
@@ -119,7 +154,8 @@ NSString *updateScriptURL=nil;
         NSString *cmd=[NSString stringWithFormat:@"chmod 0777 '%@'",[self updateScript]];
         int res=system([cmd cStringUsingEncoding:NSUTF8StringEncoding]);
         if(res!=0){NSLog(@"%s error: failed to chmod",__PRETTY_FUNCTION__);return YES;}
-        cmd=[NSString stringWithFormat:@"'%@' '%@' '%@'",[self updateScript],currentVersion,latestVersion];
+        cmd=[NSString stringWithFormat:@"'%@' '%@' '%@' '%@' '%@'",[self updateScript],
+             currentVersion,latestVersion,appPath,[self appFolder]];
         res=system([cmd cStringUsingEncoding:NSUTF8StringEncoding]);
         if(res!=0){NSLog(@"%s error: failed to execute update script",__PRETTY_FUNCTION__);return YES;}
         NSLog(@"%s Removing old junk!",__PRETTY_FUNCTION__);
@@ -136,6 +172,7 @@ NSString *updateScriptURL=nil;
     }}
     else if (res==-1)
     {
+        [CRT_SettingsDelegate setObject:@NO forKey:@"autoupdate"];
         return NO;
     }
     return YES;
