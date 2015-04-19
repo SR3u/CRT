@@ -20,8 +20,8 @@ log "updating from version "$OLDVERSION" to version "$NEWVERSION
 log "update started" `date` 
 log update directory: $DIR
 log Application Support directory: $APPSUPPORTDIR
-log Application folder $APPFOLDER
-log CRT.app location $APPPATH
+log Application folder: $APPFOLDER
+log CRT.app location: $APPPATH
 log update.log: $UPDATELOG
 log unzipping update
 log "unzip ./update.zip"

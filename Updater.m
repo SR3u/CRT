@@ -23,25 +23,24 @@ NSString *currentVersion=nil;
 NSString *updateScriptURL=nil;
 NSString *appPath;
 
-+(NSString*) getUpdateInfoURL
++(NSURL*) getUpdateInfoURL
 {
     NSDictionary *settings=[CRT_SettingsDelegate getSettings];
     NSString*tmp= [settings objectForKey:@"updateInfoURL"];
     if(tmp==nil)
     {
         [CRT_SettingsDelegate setObject:updateInfoURL forKey:@"updateInfoURL"];
-        return updateInfoURL;
+        return [NSURL URLWithString:updateInfoURL];
     }
-    return tmp;
+    return [NSURL URLWithString:tmp];
 }
 +(BOOL) updateNeededForVersion:(NSString*)curVersion
 {@autoreleasepool{
     appPath=[[NSBundle mainBundle] bundlePath];
     if(appPath==nil){return NO;}
     NSString* defaultUpdateInfoURL=updateInfoURL;
-    updateInfoURL=[[self class] getUpdateInfoURL];
     NSError *e;
-    NSString *json=[NSString stringWithContentsOfURL:[NSURL URLWithString:updateInfoURL] encoding:NSUTF8StringEncoding error:&e];
+    NSString *json=[NSString stringWithContentsOfURL:[[self class] getUpdateInfoURL] encoding:NSUTF8StringEncoding error:&e];
     if(e!=nil)
     {
         NSLog(@"%s error:%@\nRetrying...",__PRETTY_FUNCTION__,e);
@@ -113,8 +112,8 @@ NSString *appPath;
     NSString *appFolder=@"";
     for(NSUInteger i=0;i<[arr count]-1;i++)
     {
-        appFolder=[appFolder stringByAppendingString:@"/"];
         appFolder=[appFolder stringByAppendingString:[arr objectAtIndex:i]];
+        appFolder=[appFolder stringByAppendingString:@"/"];
     }
     return appFolder;
 }}
