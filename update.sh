@@ -17,7 +17,8 @@ echo "log cleared" > "$UPDATELOG"
 rm -rf $UPDATELOG
 cd "$DIR"
 log "updating from version "$OLDVERSION" to version "$NEWVERSION
-log "update started" `date` 
+log "update started" `date`
+log pwd: `pwd`
 log update directory: $DIR
 log Application Support directory: $APPSUPPORTDIR
 log Application folder: $APPFOLDER
