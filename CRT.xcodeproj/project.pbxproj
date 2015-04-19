@@ -26,6 +26,9 @@
 		4EBD2FE718B1485E0093A21F /* TableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBD2FE118B1485E0093A21F /* TableData.m */; };
 		4EBD2FEE18B149DB0093A21F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBD2FED18B149DB0093A21F /* MainMenu.xib */; };
 		4ECBADBC1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */; };
+		4EE058B81AE428BA00CE7697 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0B13C30F9F00825C6E /* AppKit.framework */; };
+		4EE058B91AE428BA00CE7697 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0C13C30F9F00825C6E /* CoreData.framework */; };
+		4EE058BA1AE428BA00CE7697 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0D13C30F9F00825C6E /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EE058B81AE428BA00CE7697 /* AppKit.framework in Frameworks */,
+				4EE058B91AE428BA00CE7697 /* CoreData.framework in Frameworks */,
+				4EE058BA1AE428BA00CE7697 /* Foundation.framework in Frameworks */,
 				4EBD2F8018B147F70093A21F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -109,7 +109,7 @@
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <outlet property="dataSource" destination="O42-tJ-B6P" id="e4z-tu-VQi"/>
+                                        <outlet property="dataSource" destination="O42-tJ-B6P" id="BxV-jO-hdj"/>
                                     </connections>
                                 </tableView>
                             </subviews>
