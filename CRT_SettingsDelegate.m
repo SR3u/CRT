@@ -108,13 +108,11 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
 }
 -(void) refreshUI
 {
-   //[dblClickAction selectItemAtIndex:[[settingsDict objectForKey:@"dblClickAction"] integerValue]];
     if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[autoupdate setState:NSOnState];}
     else{[autoupdate setState:NSOffState];}
 }
 -(void) refreshSettings
 {
-    //[settingsDict setObject:[NSNumber numberWithInteger:[dblClickAction indexOfSelectedItem]] forKey:@"dblClickAction"];
     if([autoupdate state]==NSOnState){[settingsDict setObject:@YES forKey:@"autoupdate"];}
     else{[settingsDict setObject:@NO forKey:@"autoupdate"];}
 }
