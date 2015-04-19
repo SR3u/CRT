@@ -1,4 +1,5 @@
 {
-  "version" : "0.27",
-  "latestVersionURL" : "https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.27.zip"
+  "version" : "0.28",
+  "latestVersionURL" : "https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.28.zip",
+  "updateScriptURL":"http://sr3u.16mb.com/app_updates/CRT/update.sh"
 }

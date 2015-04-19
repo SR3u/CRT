@@ -26,7 +26,7 @@
     return self;
 }}
 -(IBAction)checkForUpdate:(id)sender
-{@autoreleasepool{
+{dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{@autoreleasepool{
     BOOL upd=[Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]];
     if(upd){if([Updater update]==NO){[settingsDict setObject:@NO forKey:@"autoupdate"];}}
     else
@@ -38,10 +38,10 @@
                                                   alternateButton:nil
                                                       otherButton:nil
                                         informativeTextWithFormat:@"You are usilg the latest version of CRT!"];
-            [confirmAlert runModal];
+            dispatch_async(dispatch_get_main_queue(),^{[confirmAlert runModal];});
         }
     }
-}}
+}});}
 -(NSDictionary*) defaultSettings
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:

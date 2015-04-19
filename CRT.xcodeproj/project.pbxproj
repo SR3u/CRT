@@ -37,6 +37,7 @@
 		4E3536011AE163E500421D56 /* Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
 		4E3536021AE163F200421D56 /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
 		4E3536041AE1680B00421D56 /* updateinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updateinfo.json; sourceTree = "<group>"; };
+		4E3536051AE3A10700421D56 /* update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update.sh; sourceTree = "<group>"; };
 		4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CRT_Icon.icns; sourceTree = "<group>"; };
 		4E4F36691ADFE3DD00FF3893 /* jsonTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jsonTools.h; sourceTree = "<group>"; };
 		4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jsonTools.m; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		4E3536001AE163CA00421D56 /* Updater */ = {
 			isa = PBXGroup;
 			children = (
+				4E3536051AE3A10700421D56 /* update.sh */,
 				4E3536041AE1680B00421D56 /* updateinfo.json */,
 				4E3536011AE163E500421D56 /* Updater.h */,
 				4E3536021AE163F200421D56 /* Updater.m */,
@@ -181,10 +183,10 @@
 		DD4F7BF913C30F9F00825C6E = {
 			isa = PBXGroup;
 			children = (
+				4EBD2F8118B147F70093A21F /* CRT */,
 				4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */,
 				4E4F36681ADFE3DD00FF3893 /* jsonTools */,
 				4EBD2FDA18B1483A0093A21F /* VNC Servers List */,
-				4EBD2F8118B147F70093A21F /* CRT */,
 				4E3536001AE163CA00421D56 /* Updater */,
 				DD4F7C0713C30F9F00825C6E /* Frameworks */,
 				DD4F7C0513C30F9F00825C6E /* Products */,

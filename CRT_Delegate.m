@@ -34,6 +34,12 @@ NSString *formatString=@"";
         else
         {
             NSLog(@"cannot find ScreenSharing.app at default locations, please update CRT.app");
+            NSAlert *errAlert=[NSAlert alertWithMessageText:@"ERROR!"
+                                               defaultButton:@"OK"
+                                             alternateButton:nil
+                                                 otherButton:nil
+                                   informativeTextWithFormat:@"cannot find ScreenSharing.app at default locations, please update CRT.app"];
+            dispatch_async(dispatch_get_main_queue(),^{[errAlert runModal];});
             [self Quit:self];
         }
     }
