@@ -14,6 +14,7 @@
     IBOutlet NSTableView *table;
 }
 -(void) add:(TableRow*)row;
+-(void) addArray:(NSArray*)arr;
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView;
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex;

@@ -100,5 +100,9 @@
     [data removeObjectAtIndex:index];
     [table reloadData];
 }
-
+-(void) addArray:(NSArray*)arr
+{
+    [data addObjectsFromArray:arr];
+    [table reloadData];
+}
 @end

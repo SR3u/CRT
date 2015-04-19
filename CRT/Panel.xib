@@ -319,14 +319,6 @@
                 </subviews>
             </view>
         </window>
-        <customObject id="WZc-Kf-QCg" customClass="CRT_SettingsDelegate">
-            <connections>
-                <outlet property="Version" destination="DjE-1L-NoR" id="duX-mw-ibY"/>
-                <outlet property="autoupdate" destination="Voh-Do-SBA" id="7de-dv-4JI"/>
-                <outlet property="crtDelegate" destination="eB5-5H-uW1" id="HIi-PG-ORk"/>
-                <outlet property="window" destination="M14-5h-KMX" id="JkL-gm-eHI"/>
-            </connections>
-        </customObject>
         <customObject id="eB5-5H-uW1" customClass="CRT_Delegate">
             <connections>
                 <outlet property="AddServerAddress" destination="gzS-Od-EB3" id="p93-Oq-lJs"/>
@@ -341,6 +333,15 @@
                 <outlet property="SettingsWindow" destination="M14-5h-KMX" id="qKG-Ij-qfU"/>
                 <outlet property="Table" destination="T9i-zZ-Wlc" id="7Sv-8C-Q2y"/>
                 <outlet property="Version" destination="DjE-1L-NoR" id="aQU-3f-z2u"/>
+            </connections>
+        </customObject>
+        <customObject id="WZc-Kf-QCg" customClass="CRT_SettingsDelegate">
+            <connections>
+                <outlet property="Version" destination="DjE-1L-NoR" id="duX-mw-ibY"/>
+                <outlet property="autoupdate" destination="Voh-Do-SBA" id="7de-dv-4JI"/>
+                <outlet property="crtDelegate" destination="eB5-5H-uW1" id="HIi-PG-ORk"/>
+                <outlet property="servers" destination="O42-tJ-B6P" id="z5D-0Y-6PV"/>
+                <outlet property="window" destination="M14-5h-KMX" id="JkL-gm-eHI"/>
             </connections>
         </customObject>
         <customObject id="O42-tJ-B6P" customClass="TableData">
@@ -399,7 +400,7 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </textFieldCell>
                     </textField>
                     <button id="Voh-Do-SBA">
-                        <rect key="frame" x="7" y="35" width="222" height="18"/>
+                        <rect key="frame" x="7" y="61" width="222" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Check for updates automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uy0-UX-MrR">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -407,7 +408,7 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" id="9Em-JX-r1S">
-                        <rect key="frame" x="229" y="26" width="109" height="32"/>
+                        <rect key="frame" x="229" y="52" width="109" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Check now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QFZ-8h-hfI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -415,6 +416,17 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </buttonCell>
                         <connections>
                             <action selector="checkForUpdate:" target="WZc-Kf-QCg" id="GJl-qO-Zpz"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" id="nmu-6m-Txm">
+                        <rect key="frame" x="39" y="22" width="259" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Import servers from Screen Sharing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X9L-sT-FIG">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="importScreenSharingServers:" target="WZc-Kf-QCg" id="Pb0-e7-Kth"/>
                         </connections>
                     </button>
                 </subviews>

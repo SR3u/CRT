@@ -29,6 +29,7 @@
 		4EE058B81AE428BA00CE7697 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0B13C30F9F00825C6E /* AppKit.framework */; };
 		4EE058B91AE428BA00CE7697 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0C13C30F9F00825C6E /* CoreData.framework */; };
 		4EE058BA1AE428BA00CE7697 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4F7C0D13C30F9F00825C6E /* Foundation.framework */; };
+		4EE058BD1AE42B4400CE7697 /* ScreenSharingImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE058BC1AE42B4400CE7697 /* ScreenSharingImporter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,8 @@
 		4EBD2FEF18B1522E0093A21F /* CRT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CRT.entitlements; sourceTree = "<group>"; };
 		4ECBADBA1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+TableRowExt.h"; sourceTree = "<group>"; };
 		4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+TableRowExt.m"; sourceTree = "<group>"; };
+		4EE058BB1AE42B4400CE7697 /* ScreenSharingImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenSharingImporter.h; sourceTree = "<group>"; };
+		4EE058BC1AE42B4400CE7697 /* ScreenSharingImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenSharingImporter.m; sourceTree = "<group>"; };
 		DD4F7C0813C30F9F00825C6E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DD4F7C0B13C30F9F00825C6E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DD4F7C0C13C30F9F00825C6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -155,6 +158,8 @@
 				4E7C04F918B2232100C0633E /* CRT_SettingsDelegate.m */,
 				4ECBADBA1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.h */,
 				4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */,
+				4EE058BB1AE42B4400CE7697 /* ScreenSharingImporter.h */,
+				4EE058BC1AE42B4400CE7697 /* ScreenSharingImporter.m */,
 			);
 			name = "VNC Servers List";
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				4EBD2FE518B1485E0093A21F /* NSFileManager+DirectoryLocations.m in Sources */,
 				4EBD2FD918B148340093A21F /* StatusItemView.m in Sources */,
 				4EBD2FD318B148340093A21F /* PanelController.m in Sources */,
+				4EE058BD1AE42B4400CE7697 /* ScreenSharingImporter.m in Sources */,
 				4EBD2FE418B1485E0093A21F /* CRT_Delegate.m in Sources */,
 				4E3536031AE163F200421D56 /* Updater.m in Sources */,
 				4EBD2FC918B148340093A21F /* ApplicationDelegate.m in Sources */,

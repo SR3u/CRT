@@ -10,6 +10,9 @@
 #import "NSFileManager+DirectoryLocations.h"
 #import "jsonTools.h"
 #import "Updater.h"
+#import "ScreenSharingImporter.h"
+#import "TableData.h"
+#import "Updater.h"
 
 @implementation CRT_SettingsDelegate
 NSMutableDictionary* settingsDict;
@@ -44,6 +47,19 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
             dispatch_async(dispatch_get_main_queue(),^{[confirmAlert runModal];});
         }
     }
+}});}
+-(IBAction)importScreenSharingServers:(id)sender
+{dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{@autoreleasepool{
+    NSArray *screenSharingServers=[ScreenSharingImporter ScreenSharingConnections];
+    if(screenSharingServers==nil)
+    {
+        [CRT_SettingsDelegate setObject:@NO forKey:[ScreenSharingImporter kImported]];
+        return;
+    }
+    [CRT_SettingsDelegate setObject:@YES forKey:[ScreenSharingImporter kImported]];
+    [servers addArray:screenSharingServers];
+    [crtDelegate SaveAllServers:self];
+    [window close];
 }});}
 +(NSDictionary*) defaultSettings
 {
@@ -125,5 +141,6 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
 - (void)awakeFromNib
 {
     [self refreshUI];
+    if([settingsDict objectForKey:[ScreenSharingImporter kImported]]==nil){[self importScreenSharingServers:self];}
 }
 @end

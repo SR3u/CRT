@@ -53,6 +53,8 @@
 - (IBAction)ClosePanel:(id)sender;
 - (IBAction)OpenPanel:(id)sender;
 
+-(IBAction)SaveAllServers:(id)sender;
+
 -(void)awakeFromNib;
 -(void)Update;
 +(void)OpenActionWindow:(NSWindow*)ActionWindow;

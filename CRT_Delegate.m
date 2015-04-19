@@ -182,4 +182,8 @@ NSString *formatString=@"";
 {
     [self Connect:Table];
 }
+-(IBAction)SaveAllServers:(id)sender
+{
+    [Servers saveToFile:[self ServersFile]];
+}
 @end
