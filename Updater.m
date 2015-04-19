@@ -34,6 +34,14 @@ NSString *appPath;
     }
     return [NSURL URLWithString:tmp];
 }
++(BOOL) compareVersion:(NSString*)cVersion toVersion:(NSString*)nVersion
+{
+    if ([nVersion compare:cVersion options:NSNumericSearch] == NSOrderedDescending)
+    {// cVersion is lower than the nVersion
+        return YES;
+    }
+    return NO;
+}
 +(BOOL) updateNeededForVersion:(NSString*)curVersion
 {@autoreleasepool{
     appPath=[[NSBundle mainBundle] bundlePath];
@@ -58,7 +66,7 @@ NSString *appPath;
     if([latestVersion isEqualToString:currentVersion]){return NO;}
     latestVersionURL=[d objectForKey:@"latestVersionURL"];
     updateScriptURL=[d objectForKey:@"updateScriptURL"];
-    return YES;
+    return [self compareVersion:currentVersion toVersion:latestVersion];
 }}
 +(NSString*) updateFolder
 {@autoreleasepool{
