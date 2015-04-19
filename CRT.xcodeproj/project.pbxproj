@@ -67,10 +67,6 @@
 		4EBD2FE218B1485E0093A21F /* TableRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableRow.h; sourceTree = "<group>"; };
 		4EBD2FED18B149DB0093A21F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		4EBD2FEF18B1522E0093A21F /* CRT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CRT.entitlements; sourceTree = "<group>"; };
-		4EC9E5FE18B1447C00EBE2B8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		4EC9E5FF18B1447C00EBE2B8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4EC9E60018B1447C00EBE2B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		4EC9E61A18B1447C00EBE2B8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4ECBADBA1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+TableRowExt.h"; sourceTree = "<group>"; };
 		4ECBADBB1AC96BF400896E94 /* NSMutableDictionary+TableRowExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+TableRowExt.m"; sourceTree = "<group>"; };
 		DD4F7C0813C30F9F00825C6E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -157,16 +153,6 @@
 			name = "VNC Servers List";
 			sourceTree = "<group>";
 		};
-		4EC9E5FD18B1447C00EBE2B8 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4EC9E5FE18B1447C00EBE2B8 /* AppKit.framework */,
-				4EC9E5FF18B1447C00EBE2B8 /* CoreData.framework */,
-				4EC9E60018B1447C00EBE2B8 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		DD4F7BF913C30F9F00825C6E = {
 			isa = PBXGroup;
 			children = (
@@ -195,8 +181,6 @@
 				DD4F7C0C13C30F9F00825C6E /* CoreData.framework */,
 				DD4F7C0D13C30F9F00825C6E /* Foundation.framework */,
 				DD4F7C0813C30F9F00825C6E /* Cocoa.framework */,
-				4EC9E61A18B1447C00EBE2B8 /* XCTest.framework */,
-				4EC9E5FD18B1447C00EBE2B8 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
