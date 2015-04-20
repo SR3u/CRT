@@ -71,15 +71,16 @@
     }});
 }
 -(void)loadFromFile:(NSString*)FileName
-{
+{@autoreleasepool{
     NSError* err=nil;
     NSString* JSONString=[NSString stringWithContentsOfFile:FileName
                                                    encoding:NSUTF8StringEncoding error:&err];
     if(err!=nil){NSLog(@"Failed to load servers list!\nERROR:\n%@",err);data=[NSMutableArray new];return;}
     if([JSONString isEqual:@""]){data=[NSMutableArray new];return;}
     data=[NSMutableArray arrayWithJSONString:JSONString];
-    if (data == nil){data=[NSMutableArray new];}
-}
+    if(data == nil){data=[NSMutableArray new];}
+    if(![data isKindOfClass:[NSMutableArray class]]){data=[NSMutableArray new];}
+}}
 
 -(void)replaceObjectAtIndex:(NSInteger)index  withObject:(id)Obj
 {
