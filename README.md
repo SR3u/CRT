@@ -4,7 +4,7 @@ CRT is just a simple organizer for Mac OS X default utility Screen Sharing.app.
 
 # Downloads
 
-Latest version: [Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.29.1.zip) [GitHub](https://github.com/SR3u/CRT/releases/download/V.0.29.1/CRT-0.29.1.zip)  
+Latest version: [Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client/downloads/CRT-0.30.zip) [GitHub](https://github.com/SR3u/CRT/releases/download/V.0.30/CRT-0.30.zip)  
 Other versions: [Bitbucket](https://bitbucket.org/SR3u/crt-vnc-client/downloads) [GitHub](https://github.com/SR3u/CRT/releases)
 
 # License
