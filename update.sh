@@ -3,7 +3,7 @@ log()
 {
     echo $@ >> "$UPDATELOG" 2>&1
 }
-download
+download()
 {
     curl -sS "$1" > "$2"
 }
