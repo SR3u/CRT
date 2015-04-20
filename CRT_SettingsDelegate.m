@@ -39,11 +39,10 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
     {
         if(sender!=[self class])
         {
-            NSAlert* confirmAlert = [NSAlert alertWithMessageText:@"No updates found!"
-                                                    defaultButton:@"OK"
-                                                  alternateButton:nil
-                                                      otherButton:nil
-                                        informativeTextWithFormat:@"You are usilg the latest version of CRT!"];
+            NSAlert* confirmAlert = [NSAlert new];
+            confirmAlert.messageText=@"No updates found!";
+            [confirmAlert addButtonWithTitle:@"OK"];
+            confirmAlert.informativeText=[NSString stringWithFormat:@"You are usilg the latest version of CRT!"];
             dispatch_async(dispatch_get_main_queue(),^{[confirmAlert runModal];});
         }
     }

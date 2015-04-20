@@ -14,6 +14,10 @@
 @interface Updater()
 @end
 @implementation Updater
+NSInteger responceYes=-NSModalResponseStop;
+NSInteger responceNo=-NSModalResponseAbort;
+NSInteger responceNever=-NSModalResponseContinue;
+
 NSString *latestDevVersionInfoURL=@"https://bitbucket.org/SR3u/crt-vnc-client/raw/master/CRT/CRT-Info.plist";
 NSString *updateInfoURL=@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json";
 
@@ -132,15 +136,17 @@ NSString *appPath;
     if(currentVersion==nil){return NO;}
     if(updateScriptURL==nil){return NO;}
     if(appPath==nil){return NO;}
-    NSAlert* confirmAlert = [NSAlert alertWithMessageText:@"A new CRT update released!"
-                                            defaultButton:@"Yes"//1
-                                          alternateButton:@"No"//0
-                                              otherButton:@"No and never ask again"//-1
-                                informativeTextWithFormat:@"New CRT version available: %@, you use: %@\nDownload now?",
-                                                          latestVersion,currentVersion];
+    NSAlert* confirmAlert = [NSAlert new];
+    confirmAlert.messageText=@"A new CRT update released!";
+    confirmAlert.informativeText=[NSString stringWithFormat:
+                                  @"New CRT version available: %@, you use: %@\nDownload now?",
+                                  latestVersion,currentVersion];
+    [confirmAlert addButtonWithTitle:@"Yes"];
+    [confirmAlert addButtonWithTitle:@"No"];
+    [confirmAlert addButtonWithTitle:@"No and never ask again"];
     __block NSInteger res;
     dispatch_sync(dispatch_get_main_queue(),^{res=[confirmAlert runModal];});
-    if (res==1)
+    if (res==responceYes)
     {@autoreleasepool{
         NSURL *updateURL=[NSURL URLWithString:latestVersionURL];
         NSError *error;
@@ -170,14 +176,13 @@ NSString *appPath;
         NSLog(@"%s Update done!",__PRETTY_FUNCTION__);
         NSString* updatelog=[NSString stringWithContentsOfFile:[self updateLog] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"update.log:\n %@",updatelog);
-        NSAlert *doneAlert=[NSAlert alertWithMessageText:@"CRT updated"
-                                           defaultButton:@"OK"
-                                         alternateButton:nil
-                                             otherButton:nil
-                               informativeTextWithFormat:@"To use new version please close and re-launch app"];
+        NSAlert *doneAlert=[NSAlert new];
+        doneAlert.messageText=@"CRT updated";
+        [doneAlert addButtonWithTitle:@"OK"];
+        doneAlert.informativeText=[NSString stringWithFormat:@"To use new version please close and re-launch app"];
         dispatch_async(dispatch_get_main_queue(),^{[doneAlert runModal];});
     }}
-    else if (res==-1)
+    else if (res==responceNever)
     {
         [CRT_SettingsDelegate setObject:@NO forKey:@"autoupdate"];
         return NO;
