@@ -4,8 +4,12 @@ log()
     echo $@ >> "$UPDATELOG" 2>&1
 }
 download()
-{
+{ #example download 'URL_from' 'path_to'
     curl -sS "$1" > "$2"
+}
+MessageBox()
+{ #example: MessageBox 'caption' 'text' '{"button1","button2","button3"}'
+osascript -e "tell app (path to frontmost application as Unicode text) to display alert \"$1\" message \"$2\" buttons $3 default  button 1"
 }
 OLDVERSION=$1
 NEWVERSION=$2
