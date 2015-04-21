@@ -2,7 +2,7 @@
 //  NSMutableArray_NSMutableArray_TableRowExt.h
 //  CRT
 //
-//  Created by Sergey Rump on 30.03.15.
+//  Created by SR3u on 30.03.15.
 //
 //
 

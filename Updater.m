@@ -2,7 +2,7 @@
 //  Updater.m
 //  CRT
 //
-//  Created by Sergey Rump on 17.04.15.
+//  Created by SR3u on 17.04.15.
 //
 //
 
