@@ -34,7 +34,17 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
 -(IBAction)checkForUpdate:(id)sender
 {dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{@autoreleasepool{
     BOOL upd=[Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]];
-    if(upd){[Updater update];}
+    if(upd)
+    {
+        if (![Updater update])
+        {
+            NSAlert* failAlert = [NSAlert new];
+            failAlert.messageText=@"Update failed!";
+            [failAlert addButtonWithTitle:@"OK"];
+            failAlert.informativeText=@"Retry later";
+            dispatch_async(dispatch_get_main_queue(),^{[failAlert runModal];});
+        }
+    }
     else
     {
         if(sender!=[self class])
@@ -42,7 +52,7 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
             NSAlert* confirmAlert = [NSAlert new];
             confirmAlert.messageText=@"No updates found!";
             [confirmAlert addButtonWithTitle:@"OK"];
-            confirmAlert.informativeText=[NSString stringWithFormat:@"You are usilg the latest version of CRT!"];
+            confirmAlert.informativeText=@"You are usilg the latest version of CRT!";
             dispatch_async(dispatch_get_main_queue(),^{[confirmAlert runModal];});
         }
     }

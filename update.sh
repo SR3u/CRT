@@ -13,7 +13,6 @@ MessageBox()
 osascript -e "tell app \
 (path to frontmost application as Unicode text)\
 to display alert \"$1\" message \"$2\" buttons $3 default  button 1"
-return $?
 }
 OLDVERSION=$1
 NEWVERSION=$2
@@ -39,11 +38,32 @@ log update.log: $UPDATELOG
 log unzipping update
 log "unzip ./update.zip"
 unzip ./update.zip >> "$UPDATELOG" 2>&1
+if [ $? -ne 0 ]; 
+then
+      log failed!
+      exit 1
+else
+      log OK!
+fi
 log "replacing old app with new"
 log  "rm -rf $APPPATH"
 rm -rf $APPPATH >> "$UPDATELOG" 2>&1
-mv -f ./CRT.app "$APPFOLDER" >> "$UPDATELOG" 2>&1
+if [ $? -ne 0 ]; 
+then
+      log failed!
+      exit 1
+else
+      log OK!
+fi
 log "mv -f ./CRT.app $APPFOLDER"
+mv -f ./CRT.app "$APPFOLDER" >> "$UPDATELOG" 2>&1
+if [ $? -ne 0 ]; 
+then
+      log failed!
+      exit 1
+else
+      log OK!
+fi
 log "done!"
 log "update finished" `date`
 echo update log: $UPDATELOG
