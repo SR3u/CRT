@@ -23,50 +23,6 @@
                 <rect key="frame" x="0.0" y="-1" width="420" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button id="t7f-dk-lLN">
-                        <rect key="frame" x="5" y="2" width="25" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="+" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFb-4H-hon">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="OpenAddWindow:" target="eB5-5H-uW1" id="wPc-2p-xtU"/>
-                        </connections>
-                    </button>
-                    <button id="GrP-dD-tpm">
-                        <rect key="frame" x="29" y="2" width="25" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="-" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bcU-fF-Mjf">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="DeleteServer:" target="eB5-5H-uW1" id="635-Ic-ssi"/>
-                        </connections>
-                    </button>
-                    <button id="Vw1-Wf-9MP">
-                        <rect key="frame" x="53" y="2" width="34" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Edit" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Krh-Jv-5Vm">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="OpenEditWindow:" target="eB5-5H-uW1" id="Uqt-fu-00L"/>
-                        </connections>
-                    </button>
-                    <button id="WtB-hi-qOn">
-                        <rect key="frame" x="86" y="2" width="62" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="square" title="Connect" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mKY-1z-vff">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="Connect:" target="eB5-5H-uW1" id="hLY-rs-h67"/>
-                        </connections>
-                    </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2X2-hg-Qci">
                         <rect key="frame" x="5" y="28" width="410" height="260"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -148,6 +104,50 @@
                         </buttonCell>
                         <connections>
                             <action selector="Quit:" target="eB5-5H-uW1" id="uEa-y2-WPD"/>
+                        </connections>
+                    </button>
+                    <button id="t7f-dk-lLN">
+                        <rect key="frame" x="66" y="2" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" title="+" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wFb-4H-hon">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="OpenAddWindow:" target="eB5-5H-uW1" id="wPc-2p-xtU"/>
+                        </connections>
+                    </button>
+                    <button id="GrP-dD-tpm">
+                        <rect key="frame" x="90" y="2" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" title="-" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bcU-fF-Mjf">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="DeleteServer:" target="eB5-5H-uW1" id="635-Ic-ssi"/>
+                        </connections>
+                    </button>
+                    <button id="Vw1-Wf-9MP">
+                        <rect key="frame" x="114" y="2" width="34" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" title="Edit" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Krh-Jv-5Vm">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="OpenEditWindow:" target="eB5-5H-uW1" id="Uqt-fu-00L"/>
+                        </connections>
+                    </button>
+                    <button id="WtB-hi-qOn">
+                        <rect key="frame" x="5" y="2" width="62" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="square" title="Connect" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mKY-1z-vff">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Connect:" target="eB5-5H-uW1" id="hLY-rs-h67"/>
                         </connections>
                     </button>
                 </subviews>
@@ -274,15 +274,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="IhZ-on-igk">
-                        <rect key="frame" x="9" y="71" width="54" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Address" id="Zd5-3j-UEE">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button id="Tb0-Yl-8wI">
                         <rect key="frame" x="10" y="8" width="46" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -295,7 +286,7 @@
                         </connections>
                     </button>
                     <button id="B0f-3t-uyl">
-                        <rect key="frame" x="55" y="8" width="108" height="25"/>
+                        <rect key="frame" x="55" y="8" width="110" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="square" title="Save &amp; Connect" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RZ8-qz-MW3">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -316,6 +307,15 @@
                             <action selector="CloseEditWindow:" target="eB5-5H-uW1" id="Nuv-TO-shz"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="IhZ-on-igk">
+                        <rect key="frame" x="9" y="65" width="60" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Address" id="Zd5-3j-UEE">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
         </window>
@@ -333,6 +333,9 @@
                 <outlet property="SettingsWindow" destination="M14-5h-KMX" id="qKG-Ij-qfU"/>
                 <outlet property="Table" destination="T9i-zZ-Wlc" id="7Sv-8C-Q2y"/>
                 <outlet property="Version" destination="DjE-1L-NoR" id="aQU-3f-z2u"/>
+                <outlet property="addButton" destination="t7f-dk-lLN" id="mIv-n6-cC7"/>
+                <outlet property="editButton" destination="Vw1-Wf-9MP" id="uVx-wZ-JQh"/>
+                <outlet property="removeButton" destination="GrP-dD-tpm" id="uTI-f8-JZT"/>
             </connections>
         </customObject>
         <customObject id="WZc-Kf-QCg" customClass="CRT_SettingsDelegate">
@@ -340,6 +343,8 @@
                 <outlet property="Version" destination="DjE-1L-NoR" id="duX-mw-ibY"/>
                 <outlet property="autoupdate" destination="Voh-Do-SBA" id="7de-dv-4JI"/>
                 <outlet property="crtDelegate" destination="eB5-5H-uW1" id="HIi-PG-ORk"/>
+                <outlet property="importFromScreenSharing" destination="nmu-6m-Txm" id="lRH-5B-RQd"/>
+                <outlet property="screenSharingOnly" destination="Y5N-Ir-LYJ" id="svs-Db-Ryk"/>
                 <outlet property="servers" destination="O42-tJ-B6P" id="z5D-0Y-6PV"/>
                 <outlet property="window" destination="M14-5h-KMX" id="JkL-gm-eHI"/>
             </connections>
@@ -352,14 +357,23 @@
         <window title="CRT Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="M14-5h-KMX">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="165" width="336" height="113"/>
+            <rect key="contentRect" x="131" y="165" width="336" height="116"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="zte-UM-GcG">
-                <rect key="frame" x="0.0" y="0.0" width="336" height="113"/>
+                <rect key="frame" x="0.0" y="1" width="336" height="116"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DjE-1L-NoR">
+                        <rect key="frame" x="52" y="9" width="50" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.0000" id="VpY-bp-4FD">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="HL6-0u-9sV">
-                        <rect key="frame" x="313" y="-3" width="25" height="25"/>
+                        <rect key="frame" x="309" y="2" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uzL-xo-nSF">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -369,17 +383,8 @@
                             <action selector="openAbout:" target="-2" id="ZLK-4h-W0i"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DjE-1L-NoR">
-                        <rect key="frame" x="61" y="4" width="50" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0.0000" id="VpY-bp-4FD">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sxN-KS-nlS">
-                        <rect key="frame" x="158" y="4" width="151" height="17"/>
+                        <rect key="frame" x="154" y="9" width="151" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="ZE2-25-UQN">
                             <font key="font" metaFont="system"/>
@@ -391,7 +396,7 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="APw-rx-0Sg">
-                        <rect key="frame" x="7" y="4" width="55" height="17"/>
+                        <rect key="frame" x="3" y="9" width="55" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version:" id="ChS-JK-SHA">
                             <font key="font" metaFont="system"/>
@@ -400,15 +405,18 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </textFieldCell>
                     </textField>
                     <button id="Voh-Do-SBA">
-                        <rect key="frame" x="7" y="61" width="222" height="18"/>
+                        <rect key="frame" x="7" y="36" width="222" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Check for updates automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uy0-UX-MrR">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="refreshUI:" target="WZc-Kf-QCg" id="T0m-j6-1bw"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="9Em-JX-r1S">
-                        <rect key="frame" x="229" y="52" width="109" height="32"/>
+                        <rect key="frame" x="229" y="27" width="109" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Check now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QFZ-8h-hfI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -419,7 +427,7 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="nmu-6m-Txm">
-                        <rect key="frame" x="39" y="22" width="259" height="32"/>
+                        <rect key="frame" x="79" y="55" width="259" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Import servers from Screen Sharing" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X9L-sT-FIG">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -429,12 +437,23 @@ Q29weXJpZ2h0IAPCqSAyMDE0IFNSM3U
                             <action selector="importScreenSharingServers:" target="WZc-Kf-QCg" id="Pb0-e7-Kth"/>
                         </connections>
                     </button>
+                    <button id="Y5N-Ir-LYJ">
+                        <rect key="frame" x="8" y="88" width="146" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Screen Sharing only" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Eb1-H2-ODr">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="refreshUI:" target="WZc-Kf-QCg" id="8Ob-0y-FT6"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="WZc-Kf-QCg" id="qA9-oB-p2f"/>
             </connections>
-            <point key="canvasLocation" x="-327" y="407.5"/>
+            <point key="canvasLocation" x="-327" y="409"/>
         </window>
     </objects>
 </document>

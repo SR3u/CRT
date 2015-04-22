@@ -30,6 +30,8 @@
     IBOutlet NSTextField *Version,*Copyright;
     
     NSFileManager* FileManager;
+    
+    IBOutlet NSButton *addButton,*removeButton,*editButton;
 }
 
 - (IBAction)OpenAddWindow:(id)sender;

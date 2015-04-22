@@ -7,6 +7,8 @@
 //
 
 #import "CRT_Delegate.h"
+#import "CRT_SettingsDelegate.h"
+#import "ScreenSharingImporter.h"
 #import "NSFileManager+DirectoryLocations.h"
 
 NSString* screenSharingUtilities[]=
@@ -139,6 +141,7 @@ NSString *formatString=@"";
 }
 - (IBAction)SaveServer:(id)sender
 {
+    if([[CRT_SettingsDelegate objectForKey:kScreenSharingOnly]boolValue]){return;}
     TableRow* tmp=[TableRow new];
     tmp=[tmp init];
     [tmp setName:[EditServerName stringValue]];
@@ -168,6 +171,14 @@ NSString *formatString=@"";
 }
 -(void)Update
 {
+    if([[CRT_SettingsDelegate objectForKey:kScreenSharingOnly]boolValue])
+    {
+        addButton.hidden=YES;removeButton.hidden=YES;editButton.hidden=YES;
+        [Servers clear];
+        [Servers addArray:[ScreenSharingImporter ScreenSharingConnections]];
+        return;
+    }
+    addButton.hidden=NO;removeButton.hidden=NO;editButton.hidden=NO;
     [Servers loadFromFile:[self ServersFile]];
 }
 - (void)awakeFromNib

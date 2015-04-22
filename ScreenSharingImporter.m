@@ -59,5 +59,4 @@
     [res setAddress:url];
     return res;
 }}
-+(NSString*) kImported{return @"Screen Sharing servers imported";}
 @end

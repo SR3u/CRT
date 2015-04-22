@@ -17,6 +17,14 @@
 @implementation CRT_SettingsDelegate
 NSMutableDictionary* settingsDict;
 CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
+BOOL checkBoxSelected(NSButton*cb){return ([cb state]==NSOnState);}
+NSNumber* checkBoxSelected_ns(NSButton*cb){return [NSNumber numberWithBool:checkBoxSelected(cb)];}
+void setCheckBox(NSButton*cb,BOOL selected)
+{
+    if (selected){[cb setState:NSOnState];}
+    else{[cb setState:NSOffState];}
+}
+void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boolValue]);}
 -(id) init
 {@autoreleasepool{@synchronized(CRT_SettingsDelegate_instance){
     if(!(self =[super init]))
@@ -26,14 +34,14 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
     settingsDict=[[self class] loadSettingsFromFile:[[[self class] class] SettingsJSONFile]];
     if(settingsDict==nil)
         settingsDict=[[[self class] defaultSettings] mutableCopy];
-    [settingsDict setObject:[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]forKey:@"version"];
-    if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[self checkForUpdate:[self class]];}
+    [settingsDict setObject:[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]forKey:kVersion];
+    if([[settingsDict objectForKey:kAutoupdate]boolValue]){[self checkForUpdate:[self class]];}
     [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];
     return self;
 }}}
 -(IBAction)checkForUpdate:(id)sender
 {dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{@autoreleasepool{
-    BOOL upd=[Updater updateNeededForVersion:[settingsDict objectForKey:@"version"]];
+    BOOL upd=[Updater updateNeededForVersion:[settingsDict objectForKey:kVersion]];
     if(upd)
     {
         if (![Updater update])
@@ -58,23 +66,28 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
     }
 }});}
 -(IBAction)importScreenSharingServers:(id)sender
-{dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{@autoreleasepool{
-    NSArray *screenSharingServers=[ScreenSharingImporter ScreenSharingConnections];
-    if(screenSharingServers==nil)
-    {
-        [CRT_SettingsDelegate setObject:@NO forKey:[ScreenSharingImporter kImported]];
-        return;
-    }
-    [CRT_SettingsDelegate setObject:@YES forKey:[ScreenSharingImporter kImported]];
-    [servers addArray:screenSharingServers];
-    [crtDelegate SaveAllServers:self];
-    [window close];
-}});}
+{
+    if([[settingsDict objectForKey:kScreenSharingOnly]boolValue]){return;}
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+    ^{@autoreleasepool{
+        NSArray *screenSharingServers=[ScreenSharingImporter ScreenSharingConnections];
+        if(screenSharingServers==nil)
+        {
+            [CRT_SettingsDelegate setObject:@NO forKey:kScreenSharingImported];
+            return;
+        }
+        [CRT_SettingsDelegate setObject:@YES forKey:kScreenSharingImported];
+        [servers addArray:screenSharingServers];
+        [crtDelegate SaveAllServers:self];
+        [window close];
+    }});
+}
 +(NSDictionary*) defaultSettings
 {
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
-                       [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],@"version",
-                       @YES,@"autoupdate",@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json",@"updateInfoURL",
+                       [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],kVersion,
+                       @YES,kAutoupdate,@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json",kUpdateInfoURL,
+                       @NO,kScreenSharingOnly,
                        //@1,@"dblClickAction",
                        nil];
     return res;
@@ -99,7 +112,7 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
     if([JSONString isEqual:@""])
         return nil;
     newSettingsDict=[NSMutableDictionary dictionaryWithJSONString:JSONString];
-    if([newSettingsDict objectForKey:@"version"]==nil){return nil;}
+    if([newSettingsDict objectForKey:kVersion]==nil){return nil;}
     return newSettingsDict;
 }}
 +(void) saveSettingsToFile:(NSString*)fileName
@@ -117,13 +130,14 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
 }
 -(void) refreshUI
 {
-    if([[settingsDict objectForKey:@"autoupdate"]boolValue]){[autoupdate setState:NSOnState];}
-    else{[autoupdate setState:NSOffState];}
+    setCheckBox(autoupdate,[[settingsDict objectForKey:kAutoupdate]boolValue]);
+    setCheckBox(screenSharingOnly,[[settingsDict objectForKey:kScreenSharingOnly]boolValue]);
+    importFromScreenSharing.hidden=[[settingsDict objectForKey:kScreenSharingOnly]boolValue];
 }
 -(void) refreshSettings
 {
-    if([autoupdate state]==NSOnState){[settingsDict setObject:@YES forKey:@"autoupdate"];}
-    else{[settingsDict setObject:@NO forKey:@"autoupdate"];}
+    [settingsDict setObject:checkBoxSelected_ns(autoupdate) forKey:kAutoupdate];
+    [settingsDict setObject:checkBoxSelected_ns(screenSharingOnly) forKey:kScreenSharingOnly];
 }
 +(void) setObject:(id)val forKey:(id)key
 {
@@ -134,6 +148,10 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
         [CRT_SettingsDelegate_instance refreshUI];
     }
 }
++(id) objectForKey:(id)key;
+{
+    return [settingsDict objectForKey:key];
+}
 +(NSDictionary*) getSettings
 {
     return settingsDict;
@@ -143,11 +161,17 @@ CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
     [self refreshSettings];
     [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];
     [crtDelegate OpenPanel:sender];
+    [crtDelegate Update];
     return YES;
 }
 - (void)awakeFromNib
 {
     [self refreshUI];
-    if([settingsDict objectForKey:[ScreenSharingImporter kImported]]==nil){[self importScreenSharingServers:self];}
+    if([settingsDict objectForKey:kScreenSharingImported]==nil){[self importScreenSharingServers:self];}
+}
+-(IBAction)refreshUI:(id)sender
+{
+    [self refreshSettings];
+    [self refreshUI];
 }
 @end

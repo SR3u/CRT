@@ -9,5 +9,4 @@
 #import <Foundation/Foundation.h>
 @interface ScreenSharingImporter : NSObject
 +(NSArray*) ScreenSharingConnections;
-+(NSString*) kImported;
 @end
