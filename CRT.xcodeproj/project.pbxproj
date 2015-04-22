@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E22E4811AE7BC1D00EDF79F /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E22E4801AE7BC1D00EDF79F /* IOKit.framework */; };
 		4E3536031AE163F200421D56 /* Updater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3536021AE163F200421D56 /* Updater.m */; };
 		4E3B835B18C4F3BD005E5ABF /* CRT_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */; };
 		4E4F366B1ADFE3DD00FF3893 /* jsonTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F366A1ADFE3DD00FF3893 /* jsonTools.m */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E22E4801AE7BC1D00EDF79F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		4E3536011AE163E500421D56 /* Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
 		4E3536021AE163F200421D56 /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
 		4E3536041AE1680B00421D56 /* updateinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updateinfo.json; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E22E4811AE7BC1D00EDF79F /* IOKit.framework in Frameworks */,
 				4EE058B81AE428BA00CE7697 /* AppKit.framework in Frameworks */,
 				4EE058B91AE428BA00CE7697 /* CoreData.framework in Frameworks */,
 				4EE058BA1AE428BA00CE7697 /* Foundation.framework in Frameworks */,
@@ -167,8 +170,8 @@
 		DD4F7BF913C30F9F00825C6E = {
 			isa = PBXGroup;
 			children = (
-				4EBD2F8118B147F70093A21F /* CRT */,
 				4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */,
+				4EBD2F8118B147F70093A21F /* CRT */,
 				4E4F36681ADFE3DD00FF3893 /* jsonTools */,
 				4EBD2FDA18B1483A0093A21F /* VNC Servers List */,
 				4E3536001AE163CA00421D56 /* Updater */,
@@ -188,6 +191,7 @@
 		DD4F7C0713C30F9F00825C6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E22E4801AE7BC1D00EDF79F /* IOKit.framework */,
 				DD4F7C0B13C30F9F00825C6E /* AppKit.framework */,
 				DD4F7C0C13C30F9F00825C6E /* CoreData.framework */,
 				DD4F7C0D13C30F9F00825C6E /* Foundation.framework */,

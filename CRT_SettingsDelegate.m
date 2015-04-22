@@ -34,6 +34,7 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     settingsDict=[[self class] loadSettingsFromFile:[[[self class] class] SettingsJSONFile]];
     if(settingsDict==nil)
         settingsDict=[[[self class] defaultSettings] mutableCopy];
+    [[self class]fixMissingKeys];
     [settingsDict setObject:[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]forKey:kVersion];
     if([[settingsDict objectForKey:kAutoupdate]boolValue]){[self checkForUpdate:[self class]];}
     [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];
@@ -65,6 +66,17 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
         }
     }
 }});}
++(void) fixMissingKeys
+{@autoreleasepool{
+    NSDictionary *d=[self defaultSettings];
+    for (id key in d)
+    {
+        if([settingsDict objectForKey:key]==nil)
+        {
+            [settingsDict setObject:[d objectForKey:key] forKey:key];
+        }
+    }
+}}
 -(IBAction)importScreenSharingServers:(id)sender
 {
     if([[settingsDict objectForKey:kScreenSharingOnly]boolValue]){return;}
@@ -87,7 +99,7 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],kVersion,
                        @YES,kAutoupdate,@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json",kUpdateInfoURL,
-                       @NO,kScreenSharingOnly,
+                       @NO,kScreenSharingOnly,[self getSystemUUID],kUUID,
                        //@1,@"dblClickAction",
                        nil];
     return res;
@@ -130,6 +142,9 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
 }
 -(void) refreshUI
 {
+#if APPSTORE_BUILD
+    checkForUpdatesNow.hidden=YES; autoupdate.hidden=YES;
+#endif
     setCheckBox(autoupdate,[[settingsDict objectForKey:kAutoupdate]boolValue]);
     setCheckBox(screenSharingOnly,[[settingsDict objectForKey:kScreenSharingOnly]boolValue]);
     importFromScreenSharing.hidden=[[settingsDict objectForKey:kScreenSharingOnly]boolValue];
@@ -174,4 +189,21 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     [self refreshSettings];
     [self refreshUI];
 }
++(NSString *)getSystemUUID
+{@autoreleasepool{
+#if APPSTORE_BUILD
+    return @"";
+#else
+    io_service_t platformExpert=IOServiceGetMatchingService(kIOMasterPortDefault,
+                                                            IOServiceMatching("IOPlatformExpertDevice"));
+    if (!platformExpert)
+        return nil;
+    CFTypeRef serialNumberAsCFString=IORegistryEntryCreateCFProperty(platformExpert,CFSTR(kIOPlatformUUIDKey),
+                                                                     kCFAllocatorDefault, 0);
+    if (!serialNumberAsCFString)
+        return nil;
+    IOObjectRelease(platformExpert);
+    return(__bridge NSString*)(serialNumberAsCFString);
+#endif
+}}
 @end

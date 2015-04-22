@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PanelController">
@@ -342,6 +342,7 @@
             <connections>
                 <outlet property="Version" destination="DjE-1L-NoR" id="duX-mw-ibY"/>
                 <outlet property="autoupdate" destination="Voh-Do-SBA" id="7de-dv-4JI"/>
+                <outlet property="checkForUpdatesNow" destination="9Em-JX-r1S" id="tDD-Td-710"/>
                 <outlet property="crtDelegate" destination="eB5-5H-uW1" id="HIi-PG-ORk"/>
                 <outlet property="importFromScreenSharing" destination="nmu-6m-Txm" id="lRH-5B-RQd"/>
                 <outlet property="screenSharingOnly" destination="Y5N-Ir-LYJ" id="svs-Db-Ryk"/>

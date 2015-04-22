@@ -14,6 +14,10 @@
 @interface Updater()
 @end
 @implementation Updater
+#if APPSTORE_BUILD
++(BOOL) updateNeededForVersion:(NSString*)curVersion{[CRT_SettingsDelegate setObject:@NO forKey:@"autoupdate"];return NO;}
++(BOOL) update{[CRT_SettingsDelegate setObject:@NO forKey:@"autoupdate"];return NO;}
+#else
 NSInteger responceYes=-NSModalResponseStop;
 NSInteger responceNo=-NSModalResponseAbort;
 NSInteger responceNever=-NSModalResponseContinue;
@@ -189,4 +193,5 @@ NSString *appPath;
     }
     return YES;
 }}
+#endif //APPSTORE_BUILD
 @end
