@@ -36,6 +36,7 @@
 /* Begin PBXFileReference section */
 		4E22E4801AE7BC1D00EDF79F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		4E22E4821AE7C6EC00EDF79F /* stats */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = stats; sourceTree = "<group>"; };
+		4E22E4831AE7FEAA00EDF79F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4E3536011AE163E500421D56 /* Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
 		4E3536021AE163F200421D56 /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
 		4E3536041AE1680B00421D56 /* updateinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updateinfo.json; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		4EBD2FDC18B1485E0093A21F /* CRT_Delegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRT_Delegate.m; sourceTree = "<group>"; };
 		4EBD2FDD18B1485E0093A21F /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		4EBD2FDE18B1485E0093A21F /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
-		4EBD2FDF18B1485E0093A21F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		4EBD2FE018B1485E0093A21F /* TableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableData.h; sourceTree = "<group>"; };
 		4EBD2FE118B1485E0093A21F /* TableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableData.m; sourceTree = "<group>"; };
 		4EBD2FE218B1485E0093A21F /* TableRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableRow.h; sourceTree = "<group>"; };
@@ -151,7 +151,6 @@
 		4EBD2FDA18B1483A0093A21F /* VNC Servers List */ = {
 			isa = PBXGroup;
 			children = (
-				4EBD2FDF18B1485E0093A21F /* README.md */,
 				4EBD2FDB18B1485E0093A21F /* CRT_Delegate.h */,
 				4EBD2FDC18B1485E0093A21F /* CRT_Delegate.m */,
 				4EBD2FDD18B1485E0093A21F /* NSFileManager+DirectoryLocations.h */,
@@ -172,6 +171,7 @@
 		DD4F7BF913C30F9F00825C6E = {
 			isa = PBXGroup;
 			children = (
+				4E22E4831AE7FEAA00EDF79F /* README.md */,
 				4E3B835A18C4F3BD005E5ABF /* CRT_Icon.icns */,
 				4EBD2F8118B147F70093A21F /* CRT */,
 				4E4F36681ADFE3DD00FF3893 /* jsonTools */,
