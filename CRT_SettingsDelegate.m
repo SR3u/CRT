@@ -15,11 +15,12 @@
 #import "Updater.h"
 
 @implementation CRT_SettingsDelegate
-NSMutableDictionary* settingsDict,*UserNotificationsActions;
+NSMutableDictionary* settingsDict,*UserNotificationsActions,*UserNotificationsTTL;
 NSUserNotificationCenter *CRT_NotificationCenter;
 CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
 
-void notification(NSString* _id,NSString* title,NSString* text,dispatch_block_t action)
+void notification(NSString* _id,NSString* title,NSString* text,
+                  dispatch_block_t action,unsigned int ttl)
 {
     if (_id==nil){return;}
     if(CRT_NotificationCenter==nil)
@@ -39,6 +40,10 @@ void notification(NSString* _id,NSString* title,NSString* text,dispatch_block_t 
         {UserNotificationsActions=[NSMutableDictionary new];}
         [UserNotificationsActions setObject:action forKey:a.identifier];
     }
+    if(UserNotificationsTTL==nil)
+    {UserNotificationsTTL=[NSMutableDictionary new];}
+    [UserNotificationsTTL setObject:[NSNumber numberWithUnsignedInt:ttl]
+                             forKey:a.identifier];
     [CRT_NotificationCenter deliverNotification:a];
 }
 
@@ -63,7 +68,7 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     [[self class]fixMissingKeys];
     [settingsDict setObject:[[NSBundle mainBundle]objectForInfoDictionaryKey:@"CFBundleShortVersionString"]forKey:kVersion];
     if([[settingsDict objectForKey:kAutoupdate]boolValue]){[self checkForUpdate:[self class]];}
-    [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];    
+    [[self class] saveSettingsToFile:[[self class] SettingsJSONFile]];
     return self;
 }}}
 -(IBAction)checkForUpdate:(id)sender
@@ -74,14 +79,14 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     {
         if (![Updater update])
         {
-            notification(@"update_failed",@"Update failed!",@"Try again later.",nil);
+            notification(@"update_failed",@"Update failed!",@"Try again later.",nil,20);
         }
     }
     else
     {
         if(sender!=[self class])
         {
-            notification(@"no_updates_foundNSString* _id,",@"No updates found!",@"You are usilg the latest version of CRT!",nil);
+            notification(@"no_updates_foundNSString* _id,",@"No updates found!",@"You are usilg the latest version of CRT!",nil,20);
         }
     }
     checkForUpdatesNow.enabled=YES;
@@ -226,8 +231,22 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     return(__bridge NSString*)(serialNumberAsCFString);
 #endif
 }}
-- (BOOL)userNotificationCenter:(id)arg1 shouldPresentNotification:(id)arg2
+- (BOOL)userNotificationCenter:(id)userNotificationCenter shouldPresentNotification:(id)notification
 {
+    dispatch_async(dispatch_get_global_queue(0,0),^{@autoreleasepool{
+        NSUserNotification*n=notification;
+        NSNumber *TTL=[UserNotificationsTTL objectForKey:n.identifier];
+        if(TTL!=nil)
+        {
+            unsigned int ttl=[TTL unsignedIntValue];
+            if(ttl>0)
+            {
+                sleep(ttl);
+                NSUserNotificationCenter *nc=userNotificationCenter;
+                [nc removeDeliveredNotification:n];
+            }
+        }
+    }});
     return YES;
 }
 - (void)userNotificationCenter:(id)userNotificationCenter didActivateNotification:(id)notification
@@ -242,11 +261,7 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
         [nc removeDeliveredNotification:notification];
     }
 }
--(void)userNotificationCenter:(id)userNotificationCenter didDeliverNotification:(id)notification
-{dispatch_async(dispatch_get_global_queue(0,0),^{@autoreleasepool{
-    sleep(10);
-    [userNotificationCenter removeDeliveredNotification:notification];
-}});}
+-(void)userNotificationCenter:(id)userNotificationCenter didDeliverNotification:(id)notification{}
 +(void) appWillTerminate
 {
     [CRT_NotificationCenter removeAllDeliveredNotifications];
