@@ -1,0 +1,12 @@
+#!/bin/bash
+SERVER_PATH="/app_updates/CRT/logs"
+USERNAME="u362397904"
+PASSWORD="fallout2"
+HOSTNAME="sr3u.16mb.com"
+UUID=`ioreg -rd1 -c IOPlatformExpertDevice | awk '/IOPlatformUUID/ { split($0, line, "\""); printf("%s\n", line[4]); }'`
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd ..
+cp "./last_update.log" "$UUID.log"
+ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.log" "$UUID.log"
+rm "$UUID.log"
+echo o

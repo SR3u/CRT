@@ -35,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		4E22E4801AE7BC1D00EDF79F /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		4E22E4821AE7C6EC00EDF79F /* stats */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = stats; sourceTree = "<group>"; };
 		4E3536011AE163E500421D56 /* Updater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Updater.h; sourceTree = "<group>"; };
 		4E3536021AE163F200421D56 /* Updater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Updater.m; sourceTree = "<group>"; };
 		4E3536041AE1680B00421D56 /* updateinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = updateinfo.json; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		4E3536001AE163CA00421D56 /* Updater */ = {
 			isa = PBXGroup;
 			children = (
+				4E22E4821AE7C6EC00EDF79F /* stats */,
 				4E3536051AE3A10700421D56 /* update.sh */,
 				4E3536041AE1680B00421D56 /* updateinfo.json */,
 				4E3536011AE163E500421D56 /* Updater.h */,
