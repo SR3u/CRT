@@ -23,7 +23,7 @@ NSInteger responceNo=-NSModalResponseAbort;
 NSInteger responceNever=-NSModalResponseContinue;
 
 NSString *latestDevVersionInfoURL=@"https://bitbucket.org/SR3u/crt-vnc-client/raw/master/CRT/CRT-Info.plist";
-NSString *updateInfoURL=@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json";
+NSString *updateInfoURL=@"https://bitbucket.org/SR3u/crt-vnc-client/raw/master/updateinfo.json";
 
 NSString *latestVersionURL=nil;
 NSString *latestVersion=nil;
@@ -34,7 +34,7 @@ NSString *appPath;
 +(NSURL*) getUpdateInfoURL
 {
     NSDictionary *settings=[CRT_SettingsDelegate getSettings];
-    NSString*tmp= [settings objectForKey:@"updateInfoURL"];
+    NSString*tmp=[settings objectForKey:@"updateInfoURL"];
     if(tmp==nil)
     {
         [CRT_SettingsDelegate setObject:updateInfoURL forKey:@"updateInfoURL"];
@@ -67,7 +67,16 @@ NSString *appPath;
     }
     if(json==nil){return NO;}
     NSDictionary *d=[NSDictionary dictionaryWithJSONString:json];
-    if(d==nil){return NO;}
+    if(d==nil)
+    {
+        NSLog(@"%s failed to get update info. Retrying...",__PRETTY_FUNCTION__);
+        updateInfoURL=defaultUpdateInfoURL;
+        json=[NSString stringWithContentsOfURL:[NSURL URLWithString:updateInfoURL] encoding:NSUTF8StringEncoding error:&e];
+        if(e!=nil){NSLog(@"%s error:%@",__PRETTY_FUNCTION__,e);return NO;}
+        [CRT_SettingsDelegate setObject:updateInfoURL forKey:@"updateInfoURL"];
+        d=[NSDictionary dictionaryWithJSONString:json];
+        if(d==nil){return NO;}
+    }
     latestVersion=[d objectForKey:@"version"];
     if(latestVersion==nil){return NO;}
     currentVersion=curVersion;
@@ -140,57 +149,40 @@ NSString *appPath;
     if(currentVersion==nil){return NO;}
     if(updateScriptURL==nil){return NO;}
     if(appPath==nil){return NO;}
-    NSAlert* confirmAlert = [NSAlert new];
-    confirmAlert.messageText=@"A new CRT update released!";
-    confirmAlert.informativeText=[NSString stringWithFormat:
-                                  @"New CRT version available: %@, you use: %@\nDownload now?",
-                                  latestVersion,currentVersion];
-    [confirmAlert addButtonWithTitle:@"Yes"];
-    [confirmAlert addButtonWithTitle:@"No"];
-    [confirmAlert addButtonWithTitle:@"No and never ask again"];
-    __block NSInteger res;
-    dispatch_sync(dispatch_get_main_queue(),^{res=[confirmAlert runModal];});
-    if (res==responceYes)
-    {@autoreleasepool{
+    notification(@"update", @"A new CRT update released!",
+                 [NSString stringWithFormat:@"New CRT version available: %@, you use: %@\nClick here to download",
+                  latestVersion,currentVersion],
+    ^{
         NSURL *updateURL=[NSURL URLWithString:latestVersionURL];
         NSError *error;
         NSLog(@"%s Downloading update",__PRETTY_FUNCTION__);
         NSData *nextVersion=[NSData dataWithContentsOfURL:updateURL options:0 error:&error];
-        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return YES;}
+        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return;}
         NSLog(@"%s Writting update to file",__PRETTY_FUNCTION__);
         [nextVersion writeToFile:[self updateZIP] options:NSDataWritingAtomic error:&error];
-        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return YES;}
+        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return;}
         NSLog(@"%s Downloading update script",__PRETTY_FUNCTION__);
         NSString *updateScript=[NSString stringWithContentsOfURL:[NSURL URLWithString:updateScriptURL]
                                                         encoding:NSUTF8StringEncoding error:&error];
-        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return YES;}
+        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return;}
         NSLog(@"%s Writting update script to file",__PRETTY_FUNCTION__);
         [updateScript writeToFile:[self updateScript] atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return YES;}
+        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return;}
         NSLog(@"%s Executing update script",__PRETTY_FUNCTION__);
         NSString *cmd=[NSString stringWithFormat:@"chmod 0777 '%@'",[self updateScript]];
         int res=system([cmd cStringUsingEncoding:NSUTF8StringEncoding]);
-        if(res!=0){NSLog(@"%s error: failed to chmod",__PRETTY_FUNCTION__);return YES;}
+        if(res!=0){NSLog(@"%s error: failed to chmod",__PRETTY_FUNCTION__);return;}
         cmd=[NSString stringWithFormat:@"'%@' '%@' '%@' '%@' '%@'",[self updateScript],
              currentVersion,latestVersion,appPath,[self appFolder]];
         res=system([cmd cStringUsingEncoding:NSUTF8StringEncoding]);
-        if(res!=0){NSLog(@"%s error: failed to execute update script",__PRETTY_FUNCTION__);return YES;}
+        if(res!=0){NSLog(@"%s error: failed to execute update script",__PRETTY_FUNCTION__);return;}
         NSLog(@"%s Removing old junk!",__PRETTY_FUNCTION__);
-        if(![self cleanUpdateFolder]){NSLog(@"%s error: failed to clean up",__PRETTY_FUNCTION__);return YES;}
+        if(![self cleanUpdateFolder]){NSLog(@"%s error: failed to clean up",__PRETTY_FUNCTION__);return;}
         NSLog(@"%s Update done!",__PRETTY_FUNCTION__);
         NSString* updatelog=[NSString stringWithContentsOfFile:[self updateLog] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"update.log:\n %@",updatelog);
-        NSAlert *doneAlert=[NSAlert new];
-        doneAlert.messageText=@"CRT updated";
-        [doneAlert addButtonWithTitle:@"OK"];
-        doneAlert.informativeText=[NSString stringWithFormat:@"To use new version please close and re-launch app"];
-        dispatch_async(dispatch_get_main_queue(),^{[doneAlert runModal];});
-    }}
-    else if (res==responceNever)
-    {
-        [CRT_SettingsDelegate setObject:@NO forKey:@"autoupdate"];
-        return NO;
-    }
+        notification(@"updated",@"CRT updated",@"To use new version please close and re-launch app",nil);
+    });
     return YES;
 }}
 #endif //APPSTORE_BUILD

@@ -37,7 +37,7 @@
                                                         error:&error];
     if (error!=nil)
     {
-        NSLog(@"%s: error: %@",__PRETTY_FUNCTION__,error.localizedDescription);
+        NSLog(@"%s: error: %@\n",__PRETTY_FUNCTION__,error.localizedDescription);
         return nil;
     }
     return res;

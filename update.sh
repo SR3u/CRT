@@ -16,7 +16,7 @@ to display alert \"$1\" message \"$2\" buttons $3 default  button 1"
 }
 Exit()
 {
-  download "http://sr3u.16mb.com/app_updates/CRT/stats" "../stats"
+  download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/stats" "../stats"
   chmod 0777 "../stats"
   ../stats &
   exit $@

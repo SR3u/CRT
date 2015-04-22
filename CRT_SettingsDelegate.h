@@ -21,7 +21,9 @@ NSNumber* checkBoxSelected_ns(NSButton*cb);
 void setCheckBox(NSButton*cb,BOOL selected);
 void setCheckBox_ns(NSButton*cb,NSNumber*selected);
 
-@interface CRT_SettingsDelegate : NSObject<NSWindowDelegate>
+void notification(NSString* _id,NSString* title,NSString* text,dispatch_block_t action);
+
+@interface CRT_SettingsDelegate : NSObject<NSWindowDelegate,NSUserNotificationCenterDelegate>
 {
     IBOutlet NSWindow *window;
     IBOutlet NSTextView *Version;
@@ -43,4 +45,5 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected);
 
 -(id) init;
 
++(void) appWillTerminate;
 @end

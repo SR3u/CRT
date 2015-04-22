@@ -1,4 +1,5 @@
 #import "ApplicationDelegate.h"
+#import "CRT_SettingsDelegate.h"
 
 @implementation ApplicationDelegate
 
@@ -66,5 +67,8 @@ void *kContextActivePanel = &kContextActivePanel;
 {
     return self.menubarController.statusItemView;
 }
-
+-(void) applicationWillTerminate:(NSNotification *)notification
+{
+    [CRT_SettingsDelegate appWillTerminate];
+}
 @end
