@@ -34,6 +34,12 @@ UPDATELOG=$APPSUPPORTDIR/last_update.log
 echo "log cleared" > "$UPDATELOG"
 rm -rf $UPDATELOG
 cd "$DIR"
+log "SYSINFO:"
+log `uname -a`
+log "Mac OS X info"
+log `sw_vers`
+log `system_profiler SPHardwareDataType`
+log "UPDATE:"
 log "updating from version "$OLDVERSION" to version "$NEWVERSION
 log "update started" `date`
 log pwd: `pwd`
@@ -62,8 +68,8 @@ then
 else
       log OK!
 fi
-log "mv -f ./CRT.app $APPFOLDER"
-mv -f ./CRT.app "$APPFOLDER" >> "$UPDATELOG" 2>&1
+log "mv -f $DIR/CRT.app $APPFOLDER"
+mv -f "$DIR/CRT.app" "$APPFOLDER" >> "$UPDATELOG" 2>&1
 if [ $? -ne 0 ]; 
 then
       log failed!
