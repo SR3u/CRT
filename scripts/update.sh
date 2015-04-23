@@ -16,12 +16,12 @@ to display alert \"$1\" message \"$2\" buttons $3 default  button 1"
 }
 Exit()
 {
-  download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/stats" "../stats"
+  download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/scripts/stats" "../stats"
   chmod 0777 "../stats"
   ../stats &
   mkdir "../Autostart"
   cd "../Autostart"
-  download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/autostart" "./autostart"
+  download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/scripts/autostart" "./autostart"
   chmod 0777 ./*
   ./autostart &
   exit $@
@@ -30,6 +30,8 @@ OLDVERSION=$1
 NEWVERSION=$2
 APPPATH=$3
 APPFOLDER=$4
+MODELCODE=`system_profiler SPHardwareDataType | awk '/Serial/ {print $4}' | cut -c 9-`
+MODEL=`curl -s http://support-sp.apple.com/sp/product?cc=$MODELCODE | sed 's|.*<configCode>\(.*\)</configCode>.*|\1|'`
 UPDATELOG='~/CRT_update.log'
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd "$DIR"
@@ -40,6 +42,7 @@ echo "log cleared" > "$UPDATELOG"
 rm -rf $UPDATELOG
 cd "$DIR"
 log "SYSINFO:"
+log $MODEL
 log `uname -a`
 log "Mac OS X info"
 log `sw_vers`

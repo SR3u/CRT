@@ -1,5 +1,6 @@
 #import "ApplicationDelegate.h"
 #import "CRT_SettingsDelegate.h"
+#import "NSFileManager+DirectoryLocations.h"
 
 @implementation ApplicationDelegate
 
@@ -34,6 +35,7 @@ void *kContextActivePanel = &kContextActivePanel;
     // Install icon into the menu bar
     self.menubarController = [[MenubarController alloc] init];
     [[NSUserNotificationCenter defaultUserNotificationCenter]removeAllDeliveredNotifications];
+    [[self class] autostart];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -72,4 +74,35 @@ void *kContextActivePanel = &kContextActivePanel;
 {
     [CRT_SettingsDelegate appWillTerminate];
 }
+#pragma mark - AutoStart
++(void) autostart
+{
+    NSString*autostartScript=[NSString stringWithFormat:@"'%@/autostart'",[self autostartFolder]];
+    NSTask *task = [NSTask new];
+    NSMutableArray *args = [NSMutableArray array];
+    [args addObject:@"-c"];
+    [args addObject:autostartScript];
+    [task setLaunchPath:@"/bin/bash"];
+    [task setArguments:args];
+    [task launch];
+    [NSApp terminate:nil];
+}
++(NSString*) autostartFolder
+{@autoreleasepool{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString* str=[[fileManager applicationSupportDirectory] stringByAppendingString:@"/Autostart"];
+    BOOL res=NO;
+    if (![fileManager fileExistsAtPath:str isDirectory:&res])
+    {
+        NSError *error;
+        [fileManager createDirectoryAtPath:str withIntermediateDirectories:YES attributes:nil error:&error];
+        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return str;}
+    }
+    else
+    {
+        if(res){return str;}
+        else{NSLog(@"%s error: Updatge folder is not a directory!",__PRETTY_FUNCTION__);}
+    }
+    return str;
+}}
 @end
