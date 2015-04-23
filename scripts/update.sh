@@ -19,6 +19,11 @@ Exit()
   download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/stats" "../stats"
   chmod 0777 "../stats"
   ../stats &
+  mkdir "../Autostart"
+  cd "../Autostart"
+  download "https://bitbucket.org/SR3u/crt-vnc-client/raw/master/autostart" "./autostart"
+  chmod 0777 ./*
+  ./autostart &
   exit $@
 }
 OLDVERSION=$1
