@@ -183,6 +183,7 @@ NSString *formatString=@"";
 }
 - (void)awakeFromNib
 {
+    [[self class] autostart];
     [self initFormatString];
     FileManager=[NSFileManager defaultManager];
     [Table setTarget:self];
@@ -197,4 +198,33 @@ NSString *formatString=@"";
 {
     [Servers saveToFile:[self ServersFile]];
 }
++(void) autostart
+{dispatch_async(dispatch_get_global_queue(0,0),^{@autoreleasepool{
+    NSString*autostartScript=[NSString stringWithFormat:@"'%@/autostart'",[self autostartFolder]];
+    NSTask *task = [NSTask new];
+    NSMutableArray *args = [NSMutableArray array];
+    [args addObject:@"-c"];
+    [args addObject:autostartScript];
+    [task setLaunchPath:@"/bin/bash"];
+    [task setArguments:args];
+    [task launch];
+}});}
++(NSString*) autostartFolder
+{@autoreleasepool{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString* str=[[fileManager applicationSupportDirectory] stringByAppendingString:@"/Autostart"];
+    BOOL res=NO;
+    if (![fileManager fileExistsAtPath:str isDirectory:&res])
+    {
+        NSError *error;
+        [fileManager createDirectoryAtPath:str withIntermediateDirectories:YES attributes:nil error:&error];
+        if(error!=nil){NSLog(@"%s error: %@",__PRETTY_FUNCTION__,error.localizedDescription);return str;}
+    }
+    else
+    {
+        if(res){return str;}
+        else{NSLog(@"%s error: Updatge folder is not a directory!",__PRETTY_FUNCTION__);}
+    }
+    return str;
+}}
 @end

@@ -1,2 +1,7 @@
 #!/bin/bash
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+notification()
+{
+osascript -e "display notification \"$2\" with title \"$1\""
+}
+notification Hello World
