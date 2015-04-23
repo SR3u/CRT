@@ -9,4 +9,3 @@ cd ..
 cp "./last_update.log" "$UUID.log"
 ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.log" "$UUID.log"
 rm "$UUID.log"
-echo o

@@ -4,4 +4,18 @@ notification()
 {
 osascript -e "display notification \"$2\" with title \"$1\""
 }
-notification Hello World
+uploadstats()
+{
+SERVER_PATH="/app_updates/CRT/active_users"
+USERNAME="u362397904"
+PASSWORD="fallout2"
+HOSTNAME="sr3u.16mb.com"
+UUID=`ioreg -rd1 -c IOPlatformExpertDevice | awk '/IOPlatformUUID/ { split($0, line, "\""); printf("%s\n", line[4]); }'`
+cd ..
+TEMPFILE=$(mktemp /tmp/output.XXXXXXXXXX) || { echo "Failed to create temp file"; exit 1; }
+echo $TEMPFILE
+echo -e "last launch:"`date` > "$TEMPFILE"
+ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.log" "$TEMPFILE"
+rm $TEMPFILE
+}
+uploadstats
