@@ -6,10 +6,6 @@
 #define OPEN_DURATION .15
 #define CLOSE_DURATION .1
 
-#define SEARCH_INSET 17
-
-#define POPUP_HEIGHT 300
-#define PANEL_WIDTH 420
 #define MENU_ANIMATION_DURATION .1
 
 #pragma mark -
@@ -110,7 +106,6 @@
 - (NSRect)statusRectForWindow:(NSWindow *)window
 {
     NSRect screenRect = [[NSScreen mainScreen]frame];
-    
     NSRect statusRect = NSZeroRect;
     
     StatusItemView *statusItemView = nil;
@@ -132,7 +127,8 @@
     }
     return statusRect;
 }
-
+-(CGFloat)popupHeight{return [[self window]frame].size.height;}
+-(CGFloat)panelWidth{return [[self window]frame].size.width;}
 - (void)openPanel
 {
     NSWindow *panel = [self window];
@@ -141,8 +137,8 @@
     NSRect statusRect = [self statusRectForWindow:panel];
 
     NSRect panelRect = [panel frame];
-    panelRect.size.width = PANEL_WIDTH;
-    panelRect.size.height = POPUP_HEIGHT;
+    panelRect.size.width = [self panelWidth];
+    panelRect.size.height = [self popupHeight];
     panelRect.origin.x = roundf(NSMidX(statusRect) - NSWidth(panelRect) / 2);
     panelRect.origin.y = NSMaxY(statusRect) - NSHeight(panelRect);
     
