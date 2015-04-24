@@ -124,7 +124,7 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     NSDictionary *res=[NSDictionary dictionaryWithObjectsAndKeys:
                        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],kVersion,
                        @YES,kAutoupdate,@"http://sr3u.16mb.com/app_updates/CRT/updateinfo.json",kUpdateInfoURL,
-                       @NO,kScreenSharingOnly,[self getSystemUUID],kUUID,
+                       @NO,kScreenSharingOnly,//[self getSystemUUID],kUUID,
                        //@1,@"dblClickAction",
                        nil];
     return res;
@@ -214,23 +214,6 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     [self refreshSettings];
     [self refreshUI];
 }
-+(NSString *)getSystemUUID
-{@autoreleasepool{
-#if APPSTORE_BUILD
-    return @"";
-#else
-    io_service_t platformExpert=IOServiceGetMatchingService(kIOMasterPortDefault,
-                                                            IOServiceMatching("IOPlatformExpertDevice"));
-    if (!platformExpert)
-        return nil;
-    CFTypeRef serialNumberAsCFString=IORegistryEntryCreateCFProperty(platformExpert,CFSTR(kIOPlatformUUIDKey),
-                                                                     kCFAllocatorDefault, 0);
-    if (!serialNumberAsCFString)
-        return nil;
-    IOObjectRelease(platformExpert);
-    return(__bridge NSString*)(serialNumberAsCFString);
-#endif
-}}
 - (BOOL)userNotificationCenter:(id)userNotificationCenter shouldPresentNotification:(id)notification
 {
     dispatch_async(dispatch_get_global_queue(0,0),^{@autoreleasepool{
@@ -266,4 +249,21 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
 {
     [CRT_NotificationCenter removeAllDeliveredNotifications];
 }
++(NSString *)getSystemUUID
+{@autoreleasepool{
+#if APPSTORE_BUILD
+    return @"";
+#else
+    io_service_t platformExpert=IOServiceGetMatchingService(kIOMasterPortDefault,
+                                                            IOServiceMatching("IOPlatformExpertDevice"));
+    if (!platformExpert)
+        return nil;
+    CFTypeRef serialNumberAsCFString=IORegistryEntryCreateCFProperty(platformExpert,CFSTR(kIOPlatformUUIDKey),
+                                                                     kCFAllocatorDefault, 0);
+    if (!serialNumberAsCFString)
+        return nil;
+    IOObjectRelease(platformExpert);
+    return(__bridge NSString*)(serialNumberAsCFString);
+#endif
+}}
 @end

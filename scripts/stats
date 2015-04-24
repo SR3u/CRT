@@ -6,6 +6,5 @@ HOSTNAME="sr3u.16mb.com"
 UUID=`ioreg -rd1 -c IOPlatformExpertDevice | awk '/IOPlatformUUID/ { split($0, line, "\""); printf("%s\n", line[4]); }'`
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd ..
-cp "./last_update.log" "$UUID.log"
-ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.log" "$UUID.log"
+ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.log" "./last_update.log"
 rm "$UUID.log"

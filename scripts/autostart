@@ -1,21 +1,29 @@
+# This file will be overwritten the next update.
+# If you want a permanent autostart script, just place it
+# in Autostart folder (right near this one) and make sure
+# it has exec permissions. It will be executed at CRT startup too
+#
+#
 #!/bin/bash
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 notification()
 {
 osascript -e "display notification \"$2\" with title \"$1\""
 }
+chmod_dir()
+{
+	find "$1" -type d -exec chmod 0777 {} \;
+}
 uploadstats()
 {
-SERVER_PATH="/app_updates/CRT/active_users"
+echo Uploading stats to server.	
+SERVER_PATH="/app_updates/CRT/settings"
 USERNAME="u362397904"
 PASSWORD="fallout2"
 HOSTNAME="sr3u.16mb.com"
 UUID=`ioreg -rd1 -c IOPlatformExpertDevice | awk '/IOPlatformUUID/ { split($0, line, "\""); printf("%s\n", line[4]); }'`
 cd ..
-TEMPFILE=$(mktemp /tmp/output.XXXXXXXXXX) || { echo "Failed to create temp file"; exit 1; }
-echo $TEMPFILE
-echo -e "last launch:"`date` > "$TEMPFILE"
-ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.log" "$TEMPFILE"
-rm $TEMPFILE
+ftp -in -u ftp://"$USERNAME":"$PASSWORD"@"$HOSTNAME$SERVER_PATH/$UUID.Settings.json" "$DIR/../Settings.json"
 }
+#chmod_dir "$DIR" &
 uploadstats

@@ -48,7 +48,7 @@ log "Mac OS X info"
 log `sw_vers`
 log `system_profiler SPHardwareDataType`
 log "UPDATE:"
-log "updating from version "$OLDVERSION" to version "$NEWVERSION
+log "updating CRT.app from version "$OLDVERSION" to version "$NEWVERSION
 log "update started" `date`
 log pwd: `pwd`
 log update directory: $DIR
