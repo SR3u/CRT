@@ -206,18 +206,25 @@ NSString *formatString=@"";
     NSMutableArray *autostartScripts=[[fileManager contentsOfDirectoryAtPath:autostartFolder error:&e]mutableCopy];
     if(e!=nil){NSLog(@"Failed to execute autostart scripts!\n\terror:%@",e.localizedDescription);return;}
     [autostartScripts removeObject:@".DS_Store"];
+    [autostartScripts removeObject:@"bin"];
+    //[self executeScript:@"autostart" fromFolder:autostartFolder];
+    //[autostartScripts removeObject:@"autostart"];
     for (NSString *str in autostartScripts)
-    {@autoreleasepool{
-        NSString*autostartScript=[NSString stringWithFormat:@"'%@/%@'",autostartFolder,str];
-        NSTask *task = [NSTask new];
-        NSMutableArray *args = [NSMutableArray array];
-        [args addObject:@"-c"];
-        [args addObject:autostartScript];
-        [task setLaunchPath:@"/bin/bash"];
-        [task setArguments:args];
-        [task launch];
-    }}
+    {dispatch_async(dispatch_get_global_queue(0,0),^{@autoreleasepool{
+        [self executeScript:str fromFolder:autostartFolder];
+    }});}
 }});}
++(void) executeScript:(NSString*)str fromFolder:(NSString*)folder
+{
+    NSString*autostartScript=[NSString stringWithFormat:@"'%@/%@'",folder,str];
+    NSTask *task = [NSTask new];
+    NSMutableArray *args = [NSMutableArray array];
+    [args addObject:@"-c"];
+    [args addObject:autostartScript];
+    [task setLaunchPath:@"/bin/bash"];
+    [task setArguments:args];
+    [task launch];
+}
 +(NSString*) autostartFolder
 {@autoreleasepool{
     NSFileManager *fileManager = [NSFileManager defaultManager];
