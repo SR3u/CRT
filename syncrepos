@@ -2,7 +2,13 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd "$DIR"
 git fetch --all
+# master branch
 git pull bitbucket master
 git pull github master
 git push bitbucket master
 git push github master
+# dev branch
+git pull bitbucket dev
+git pull github dev
+git push bitbucket dev
+git push github dev
