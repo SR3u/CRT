@@ -7,6 +7,7 @@
 #define CLOSE_DURATION .1
 
 #define MENU_ANIMATION_DURATION .1
+#define SEARCH_INSET 17
 
 #pragma mark -
 
