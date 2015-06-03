@@ -149,9 +149,11 @@ NSString *appPath;
     if(currentVersion==nil){return NO;}
     if(updateScriptURL==nil){return NO;}
     if(appPath==nil){return NO;}
-    notification(@"update", @"A new CRT update released!",
-                 [NSString stringWithFormat:@"New CRT version available: %@, you use: %@\nClick here to download",
-                  latestVersion,currentVersion],
+    [NotificationController notificationWithId:@"update"
+                                         title: @"A new CRT update released!"
+                                          text:[NSString stringWithFormat:@"New CRT version available: %@, you use: %@\nClick here to download",
+                                                latestVersion,currentVersion]
+                                        action:
     ^{
         NSURL *updateURL=[NSURL URLWithString:latestVersionURL];
         NSError *error;
@@ -181,19 +183,24 @@ NSString *appPath;
         NSLog(@"%s Update done!",__PRETTY_FUNCTION__);
         NSString* updatelog=[NSString stringWithContentsOfFile:[self updateLog] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"update.log:\n %@",updatelog);
-        notification(@"updated",@"CRT updated",@"To use new version click here.\n"
-                     "This will restart CRT",^{//restarting self
-                         NSTask *task = [NSTask new];
-                         NSMutableArray *args = [NSMutableArray array];
-                         [args addObject:@"-c"];
-                         [args addObject:[NSString stringWithFormat:@"open \"%@\"",[[NSBundle mainBundle] bundlePath]]];
-                         [task setLaunchPath:@"/bin/sh"];
-                         [task setArguments:args];
-                         [task launch];
-                         [NSApp terminate:nil];
-                     },30);
-    },30);
+        [NotificationController notificationWithId:@"updated"
+                                             title:@"CRT updated"
+                                              text:@"To use new version click here.\nThis will restart CRT"
+                                            action:^{[self restart];} ttl:30];
+    }
+                                           ttl:30];
     return YES;
 }}
 #endif //APPSTORE_BUILD
++(void) restart
+{//restarting self
+    NSTask *task = [NSTask new];
+    NSMutableArray *args = [NSMutableArray array];
+    [args addObject:@"-c"];
+    [args addObject:[NSString stringWithFormat:@"open \"%@\"",[[NSBundle mainBundle] bundlePath]]];
+    [task setLaunchPath:@"/bin/sh"];
+    [task setArguments:args];
+    [task launch];
+    [NSApp terminate:nil];
+}
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CRT_Delegate.h"
+#import "NotificationController/NotificationController.h"
 
 static NSString * const kVersion=@"version";
 static NSString * const kAutoupdate=@"autoupdate";
@@ -21,10 +22,8 @@ NSNumber* checkBoxSelected_ns(NSButton*cb);
 void setCheckBox(NSButton*cb,BOOL selected);
 void setCheckBox_ns(NSButton*cb,NSNumber*selected);
 
-void notification(NSString* _id,NSString* title,NSString* text,
-                  dispatch_block_t action,unsigned int ttl);
 
-@interface CRT_SettingsDelegate : NSObject<NSWindowDelegate,NSUserNotificationCenterDelegate>
+@interface CRT_SettingsDelegate : NSObject<NSWindowDelegate>
 {
     IBOutlet NSWindow *window;
     IBOutlet NSTextView *Version;

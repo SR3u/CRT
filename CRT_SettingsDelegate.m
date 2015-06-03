@@ -13,39 +13,11 @@
 #import "ScreenSharingImporter.h"
 #import "TableData.h"
 #import "Updater.h"
+#import "NotificationController/NotificationController.h"
 
 @implementation CRT_SettingsDelegate
-NSMutableDictionary* settingsDict,*UserNotificationsActions,*UserNotificationsTTL;
-NSUserNotificationCenter *CRT_NotificationCenter;
+NSMutableDictionary* settingsDict;
 CRT_SettingsDelegate *CRT_SettingsDelegate_instance;
-
-void notification(NSString* _id,NSString* title,NSString* text,
-                  dispatch_block_t action,unsigned int ttl)
-{
-    if (_id==nil){return;}
-    if(CRT_NotificationCenter==nil)
-    {
-        if(CRT_SettingsDelegate_instance==nil){return;}
-        CRT_NotificationCenter=[NSUserNotificationCenter defaultUserNotificationCenter];
-        [CRT_NotificationCenter setDelegate:CRT_SettingsDelegate_instance];
-    }
-    NSUserNotification* a = [NSUserNotification new];
-    a.identifier=_id;
-    if(title!=nil){a.title=title;}
-    if(text!=nil){a.informativeText=text;}
-    a.soundName = NSUserNotificationDefaultSoundName;
-    if(action!=nil)
-    {
-        if(UserNotificationsActions==nil)
-        {UserNotificationsActions=[NSMutableDictionary new];}
-        [UserNotificationsActions setObject:action forKey:a.identifier];
-    }
-    if(UserNotificationsTTL==nil)
-    {UserNotificationsTTL=[NSMutableDictionary new];}
-    [UserNotificationsTTL setObject:[NSNumber numberWithUnsignedInt:ttl]
-                             forKey:a.identifier];
-    [CRT_NotificationCenter deliverNotification:a];
-}
 
 
 BOOL checkBoxSelected(NSButton*cb){return ([cb state]==NSOnState);}
@@ -79,14 +51,19 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     {
         if (![Updater update])
         {
-            notification(@"update_failed",@"Update failed!",@"Try again later.",nil,20);
+            [NotificationController notificationWithId:@"update_failed"
+                                                 title:@"Update failed!" text:@"Try again later."
+                                                action:nil ttl:20];
         }
     }
     else
     {
         if(sender!=[self class])
         {
-            notification(@"no_updates_foundNSString* _id,",@"No updates found!",@"You are usilg the latest version of CRT!",nil,20);
+            [NotificationController notificationWithId:@"no_updates_foundNSString* _id,"
+                                                 title:@"No updates found!"
+                                                  text:@"You are usilg the latest version of CRT!"
+                                                action:nil ttl:20];
         }
     }
     checkForUpdatesNow.enabled=YES;
@@ -214,40 +191,9 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
     [self refreshSettings];
     [self refreshUI];
 }
-- (BOOL)userNotificationCenter:(id)userNotificationCenter shouldPresentNotification:(id)notification
-{
-    dispatch_async(dispatch_get_global_queue(0,0),^{@autoreleasepool{
-        NSUserNotification*n=notification;
-        NSNumber *TTL=[UserNotificationsTTL objectForKey:n.identifier];
-        if(TTL!=nil)
-        {
-            unsigned int ttl=[TTL unsignedIntValue];
-            if(ttl>0)
-            {
-                sleep(ttl);
-                NSUserNotificationCenter *nc=userNotificationCenter;
-                [nc removeDeliveredNotification:n];
-            }
-        }
-    }});
-    return YES;
-}
-- (void)userNotificationCenter:(id)userNotificationCenter didActivateNotification:(id)notification
-{
-    if([notification isKindOfClass:[NSUserNotification class]])
-    {
-        NSUserNotification *n=notification;
-        dispatch_block_t action=[UserNotificationsActions objectForKey:n.identifier];
-        if(action!=nil){dispatch_async(dispatch_get_global_queue(0,0),action);}
-        [UserNotificationsActions removeObjectForKey:n.identifier];
-        NSUserNotificationCenter *nc=userNotificationCenter;
-        [nc removeDeliveredNotification:notification];
-    }
-}
--(void)userNotificationCenter:(id)userNotificationCenter didDeliverNotification:(id)notification{}
 +(void) appWillTerminate
 {
-    [CRT_NotificationCenter removeAllDeliveredNotifications];
+    [NotificationController appWillTerminate];
 }
 +(NSString *)getSystemUUID
 {@autoreleasepool{
