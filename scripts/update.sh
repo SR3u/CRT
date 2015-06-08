@@ -1,7 +1,7 @@
 #!/bin/bash
 log()
 {
-    echo $@ >> "$UPDATELOG" 2>&1
+    echo "$@" >> "$UPDATELOG" 2>&1
 }
 download()
 { #example download 'URL_from' 'path_to'
@@ -25,7 +25,7 @@ Exit()
   chmod 0777 ./*
   ./autostart &
   exit $@
-}
+}   
 OLDVERSION=$1
 NEWVERSION=$2
 APPPATH=$3
@@ -41,6 +41,11 @@ UPDATELOG=$APPSUPPORTDIR/last_update.log
 echo "log cleared" > "$UPDATELOG"
 rm -rf $UPDATELOG
 cd "$DIR"
+log "░░░░░░░▀▄░░░▄▀░░░░░░░░"
+log "░░░░░░▄█▀███▀█▄░░░░░░░"
+log "░░░░░█▀███████▀█░░░░░░"
+log "░░░░░█░█▀▀▀▀▀█░█░░░░░░"
+log "░░░░░░░░▀▀░▀▀░░░░░░░░░"
 log "SYSINFO:"
 log $MODEL
 log `uname -a`
