@@ -128,8 +128,20 @@
     }
     return statusRect;
 }
--(CGFloat)popupHeight{return [[self window]frame].size.height;}
--(CGFloat)panelWidth{return [[self window]frame].size.width;}
+-(CGFloat)popupHeight{
+    static CGFloat old_popupHeight=0;
+    CGFloat popupHeight=[[self window]frame].size.height;
+    if(old_popupHeight<popupHeight){old_popupHeight=popupHeight;}
+    if(old_popupHeight>popupHeight){popupHeight=old_popupHeight;}
+    return popupHeight;
+}
+-(CGFloat)panelWidth{
+    static CGFloat old_panelWidth=0;
+    CGFloat panelWidth=[[self window]frame].size.width;
+    if(old_panelWidth<panelWidth){old_panelWidth=panelWidth;}
+    if(panelWidth<old_panelWidth){panelWidth=old_panelWidth;}
+    return panelWidth;
+}
 - (void)openPanel
 {
     NSWindow *panel = [self window];
