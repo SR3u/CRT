@@ -195,21 +195,4 @@ void setCheckBox_ns(NSButton*cb,NSNumber*selected){setCheckBox(cb, [selected boo
 {
     [NotificationController appWillTerminate];
 }
-+(NSString *)getSystemUUID
-{@autoreleasepool{
-#if APPSTORE_BUILD
-    return @"";
-#else
-    io_service_t platformExpert=IOServiceGetMatchingService(kIOMasterPortDefault,
-                                                            IOServiceMatching("IOPlatformExpertDevice"));
-    if (!platformExpert)
-        return nil;
-    CFTypeRef serialNumberAsCFString=IORegistryEntryCreateCFProperty(platformExpert,CFSTR(kIOPlatformUUIDKey),
-                                                                     kCFAllocatorDefault, 0);
-    if (!serialNumberAsCFString)
-        return nil;
-    IOObjectRelease(platformExpert);
-    return(__bridge NSString*)(serialNumberAsCFString);
-#endif
-}}
 @end
