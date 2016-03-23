@@ -1,4 +1,5 @@
-# CRT
+# CRT 
+[![Build Status](https://travis-ci.org/SR3u/CRT.svg?branch=master)](https://travis-ci.org/SR3u/CRT)
 
 CRT is just a simple organizer for Mac OS X default utility Screen Sharing.app.
 
