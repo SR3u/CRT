@@ -1,2 +1,4 @@
 language: objective-c
-script: xcodebuild -workspace CRT.xcworkspace -scheme CRT
+#script: xcodebuild -workspace CRT.xcworkspace -scheme CRT
+xcode_project: 'CRT.xcworkspace'
+xcode_scheme: 'CRT'
